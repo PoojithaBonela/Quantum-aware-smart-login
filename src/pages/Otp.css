@@ -1,0 +1,22 @@
+/* Reusing auth styles where possible via index.css/Register.css, but adding OTP specific ones */
+@import './Register.css';
+
+.otp-group {
+    display: flex;
+    justify-content: center;
+    margin: 30px 0;
+}
+
+.otp-input {
+    letter-spacing: 12px;
+    text-align: center;
+    font-size: 2rem !important;
+    font-weight: 700;
+    width: 240px !important;
+}
+
+.back-to-login {
+    display: block;
+    margin-top: 15px;
+    font-size: 0.85rem;
+}
