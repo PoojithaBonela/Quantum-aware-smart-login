@@ -40,14 +40,16 @@ function Login() {
             const data = await response.json();
 
             if (data.status === 'success') {
+                localStorage.setItem('userEmail', formData.email); // Persist for dashboard
                 navigate('/dashboard');
             } else if (data.status === 'mfa_required') {
-                navigate('/otp');
+                localStorage.setItem('userEmail', formData.email); // Persist for OTP page
+                navigate('/otp', { state: { email: formData.email } });
             } else {
-                setError('Login failed. Please try again.');
+                setError(data.message || 'Login failed. Please try again.');
             }
         } catch (err) {
-            setError('Login failed. Please try again.');
+            setError(err.message || 'Login failed. Please try again.');
         }
     };
 

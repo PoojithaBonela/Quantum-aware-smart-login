@@ -3,16 +3,20 @@ from flask_cors import CORS
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
 import bcrypt
 from email_validator import validate_email, EmailNotValidError
-from datetime import datetime
+from datetime import datetime, timedelta
 import random
 
-from models import db, User
+# Import local modules
+from models import db, User, OTPVerification
+from logger import log_security_event
+from otp_utils import generate_otp, hash_otp, verify_otp_hash
+from email_service import send_otp_email
 
 app = Flask(__name__)
 
 # Configuration
 app.config['SECRET_KEY'] = 'dev-secret-key-change-in-production'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///security.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///security_v2.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Initialize extensions
@@ -31,6 +35,17 @@ def load_user(user_id):
 with app.app_context():
     db.create_all()
 
+# ==================== AUTH HELPERS ====================
+
+def evaluate_risk(email, ip_address):
+    """
+    Simulate risk evaluation.
+    Returns: 'low', 'medium', or 'high'
+    """
+    # For demonstration, FORCE HIGH RISK to test OTP/Biometric flow
+    return 'high'
+    # return random.choice(['low', 'medium', 'high'])
+
 # ==================== API ENDPOINTS ====================
 
 @app.route('/api/register', methods=['POST'])
@@ -40,104 +55,160 @@ def register():
         data = request.get_json()
         email = data.get('email')
         password = data.get('password')
+        # Allow setting risk_level for demonstration/testing (default to 'low')
+        risk_level = data.get('risk_level', 'low') 
+        ip_address = request.remote_addr
         
         # Validate input
         if not email or not password:
             return jsonify({'status': 'error', 'message': 'Email and password are required'}), 400
         
-        # Validate email format
+        if risk_level not in ['low', 'medium', 'high']:
+             return jsonify({'status': 'error', 'message': 'Invalid risk level. Use low, medium, or high.'}), 400
+        
+        # Validate email
         try:
             validate_email(email, check_deliverability=False)
         except EmailNotValidError:
             return jsonify({'status': 'error', 'message': 'Invalid email format'}), 400
         
-        # Validate password strength
+        # Password policies
         if len(password) < 8:
-            return jsonify({'status': 'error', 'message': 'Password must be at least 8 characters long'}), 400
-        if not any(c.isupper() for c in password):
-            return jsonify({'status': 'error', 'message': 'Password must contain at least one uppercase letter'}), 400
-        if not any(c.islower() for c in password):
-            return jsonify({'status': 'error', 'message': 'Password must contain at least one lowercase letter'}), 400
-        if not any(c.isdigit() for c in password):
-            return jsonify({'status': 'error', 'message': 'Password must contain at least one number'}), 400
-        if not any(c in '!@#$%^&*(),.?":{}|<>' for c in password):
-            return jsonify({'status': 'error', 'message': 'Password must contain at least one special character'}), 400
-
-        # Check if user already exists
+            return jsonify({'status': 'error', 'message': 'Password too short'}), 400
+            
         if User.query.filter_by(email=email).first():
             return jsonify({'status': 'error', 'message': 'User already exists'}), 400
         
-        # Hash password
+        # Create user
         password_hash = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
-        
-        # Create new user
         new_user = User(
             email=email,
             password_hash=password_hash,
-            mfa_enabled=True,  # MFA enabled by default
-            risk_level='low'
+            risk_level=risk_level, # Store the specific risk level
+            mfa_enabled=True
         )
         
         db.session.add(new_user)
         db.session.commit()
         
+        log_security_event('REGISTER_SUCCESS', email, risk_level, ip_address)
+        
         return jsonify({
             'status': 'success',
-            'message': 'User registered successfully',
-            'user': {'email': email}
+            'message': f'User registered successfully with {risk_level.upper()} risk.',
+            'user': {'email': email, 'risk_level': risk_level}
         }), 201
         
     except Exception as e:
+        db.session.rollback()
         return jsonify({'status': 'error', 'message': str(e)}), 500
 
 
 @app.route('/api/login', methods=['POST'])
 def login():
-    """Login user and evaluate risk"""
+    """
+    Step 1: Validate Password & Fetch Stored Risk.
+    - Low Risk: Login success (Password Only).
+    - Med/High Risk: Trigger OTP.
+    """
     try:
         data = request.get_json()
         email = data.get('email')
         password = data.get('password')
+        ip_address = request.remote_addr
         
         if not email or not password:
-            return jsonify({'status': 'error', 'message': 'Email and password are required'}), 400
+            return jsonify({'status': 'error', 'message': 'Missing credentials'}), 400
         
-        # Find user
         user = User.query.filter_by(email=email).first()
         
+        if user:
+            # Check for Lockout
+            if user.lockout_until and user.lockout_until > datetime.utcnow():
+                remaining = (user.lockout_until - datetime.utcnow()).seconds
+                return jsonify({
+                    'status': 'error', 
+                    'message': f'Account locked due to too many failed attempts. Try again in {remaining} seconds.'
+                }), 403
+
+            # Verify Password
+            if bcrypt.checkpw(password.encode('utf-8'), user.password_hash.encode('utf-8')):
+                # Success - Reset counters
+                user.failed_login_attempts = 0
+                user.lockout_until = None
+                db.session.commit()
+            else:
+                # Failure - Increment counters
+                user.failed_login_attempts = (user.failed_login_attempts or 0) + 1
+                
+                if user.failed_login_attempts >= 3:
+                     user.lockout_until = datetime.utcnow() + timedelta(minutes=2)
+                     log_security_event('ACCOUNT_LOCKED_PWD', email, user.risk_level, ip_address)
+                     message = 'Account locked for 2 minutes.'
+                else:
+                     message = f'Invalid credentials. {3 - user.failed_login_attempts} attempts remaining.'
+                
+                db.session.commit()
+                log_security_event('LOGIN_FAIL', email, user.risk_level, ip_address)
+                return jsonify({'status': 'error', 'message': message}), 401
+        
+        # Generic error if user not found (to prevent enumeration, but for now we follow simple flow)
         if not user:
-            return jsonify({'status': 'error', 'message': 'Invalid credentials'}), 401
+             log_security_event('LOGIN_FAIL', email or 'unknown', 'unknown', ip_address)
+             return jsonify({'status': 'error', 'message': 'Invalid credentials'}), 401
+            
+        # Credentials valid - Use STORED Risk Level
+        current_risk = user.risk_level
         
-        # Verify password
-        if not bcrypt.checkpw(password.encode('utf-8'), user.password_hash.encode('utf-8')):
-            return jsonify({'status': 'error', 'message': 'Invalid credentials'}), 401
-        
-        # Simulate risk evaluation (random for demo)
-        risk_levels = ['low', 'medium', 'high']
-        risk_level = random.choice(risk_levels)
-        
-        # Update user's risk level
-        user.risk_level = risk_level
         user.last_login = datetime.utcnow()
         db.session.commit()
         
-        # Login user
-        login_user(user)
+        log_security_event('LOGIN_ATTEMPT_VALID', email, current_risk, ip_address)
         
-        # Decide if MFA is required (high risk triggers MFA)
-        if risk_level == 'high':
-            return jsonify({
-                'status': 'mfa_required',
-                'risk_level': risk_level,
-                'message': 'MFA verification required'
-            }), 200
-        else:
+        # === LOW RISK FLOW (Password Only) ===
+        if current_risk == 'low':
+            login_user(user)
+            log_security_event('LOGIN_SUCCESS', email, current_risk, ip_address)
             return jsonify({
                 'status': 'success',
-                'risk_level': risk_level,
+                'risk_level': 'low',
                 'message': 'Login successful',
-                'user': {'email': user.email}
+                'user': {'email': email}
             }), 200
+            
+        # === MEDIUM / HIGH RISK FLOW (OTP REQUIRED) ===
+        # 1. Generate & Store OTP
+        plain_otp = generate_otp()
+        otp_hash_val = hash_otp(plain_otp)
+        
+        # Clear existing OTPs
+        OTPVerification.query.filter_by(email=email).delete()
+        
+        new_otp = OTPVerification(
+            email=email,
+            otp_hash=otp_hash_val,
+            expires_at=datetime.utcnow() + timedelta(minutes=5),
+            attempts=0
+        )
+        db.session.add(new_otp)
+        db.session.commit()
+        
+        # 2. Send Email
+        email_sent = send_otp_email(email, plain_otp)
+        
+        if email_sent:
+            log_security_event('OTP_SENT', email, current_risk, ip_address)
+            return jsonify({
+                'status': 'mfa_required',
+                'risk_level': current_risk,
+                'message': f'Risk: {current_risk.upper()}. OTP verification required.'
+            }), 200
+        else:
+            log_security_event('OTP_SEND_ERROR', email, current_risk, ip_address)
+            return jsonify({
+                'status': 'error',
+                'message': 'Failed to send OTP email. Contact support.'
+            }), 500
             
     except Exception as e:
         return jsonify({'status': 'error', 'message': str(e)}), 500
@@ -145,38 +216,118 @@ def login():
 
 @app.route('/api/verify-otp', methods=['POST'])
 def verify_otp():
-    """Verify OTP (simulated)"""
+    """
+    Step 2: Verify OTP.
+    - If valid & Medium Risk: Login Success.
+    - If valid & High Risk: Redirect to Biometric.
+    """
     try:
         data = request.get_json()
         email = data.get('email')
-        otp = data.get('otp')
+        otp_input = data.get('otp')
+        ip_address = request.remote_addr
         
-        if not email or not otp:
-            return jsonify({'status': 'error', 'message': 'Email and OTP are required'}), 400
+        print(f"DEBUG: verify-otp received email={email}, otp={otp_input}") # DEBUG LOG
         
-        # Find user
+        if not email or not otp_input:
+            return jsonify({'status': 'error', 'message': 'Missing inputs'}), 400
+            
         user = User.query.filter_by(email=email).first()
-        
         if not user:
             return jsonify({'status': 'error', 'message': 'User not found'}), 404
+            
+        # Find OTP record
+        otp_record = OTPVerification.query.filter_by(email=email).first()
         
-        # Simulated OTP verification (hardcoded OTP: 123456)
-        if otp == '123456':
+        if not otp_record:
+            return jsonify({'status': 'error', 'message': 'No pending OTP verification'}), 400
+            
+        # Check Expiry
+        if datetime.utcnow() > otp_record.expires_at:
+            db.session.delete(otp_record)
+            db.session.commit()
+            log_security_event('OTP_EXPIRED', email, user.risk_level, ip_address)
+            return jsonify({'status': 'error', 'message': 'OTP expired'}), 400
+            
+        # Check Attempts
+        if otp_record.attempts >= 3:
+            db.session.delete(otp_record)
+            db.session.commit()
+            log_security_event('ACCOUNT_LOCKED_OTP', email, user.risk_level, ip_address)
+            return jsonify({'status': 'error', 'message': 'Too many failed attempts. Login locked.'}), 403
+            
+        # Verify OTP Hash
+        if verify_otp_hash(otp_input, otp_record.otp_hash):
+            # Success!
+            db.session.delete(otp_record)
+            db.session.commit()
+            log_security_event('OTP_SUCCESS', email, user.risk_level, ip_address)
+            
+            # === HIGH RISK FLOW (--> Biometric) ===
+            if user.risk_level == 'high':
+                log_security_event('BIOMETRIC_REDIRECT', email, user.risk_level, ip_address)
+                return jsonify({
+                    'status': 'biometric_required',
+                    'message': 'High risk detected. Biometric verification required.'
+                }), 200
+            
+            # === MEDIUM RISK FLOW (Final) ===
             login_user(user)
             return jsonify({
                 'status': 'success',
-                'message': 'OTP verified successfully',
-                'user': {'email': user.email}
+                'risk_level': user.risk_level,
+                'message': 'OTP Verified. Login successful.',
+                'user': {'email': email}
             }), 200
-        else:
-            return jsonify({
-                'status': 'error',
-                'message': 'Invalid OTP'
-            }), 401
             
+        else:
+            # Failed
+            otp_record.attempts += 1
+            db.session.commit()
+            log_security_event('OTP_FAIL', email, user.risk_level, ip_address, {'attempt': otp_record.attempts})
+            return jsonify({'status': 'error', 'message': 'Invalid OTP'}), 401
+
     except Exception as e:
         return jsonify({'status': 'error', 'message': str(e)}), 500
 
+
+@app.route('/api/verify-biometric', methods=['POST'])
+def verify_biometric():
+    """
+    Step 3 (High Risk Only): Simulate Biometric Check.
+    """
+    try:
+        data = request.get_json()
+        email = data.get('email')
+        ip_address = request.remote_addr
+        
+        user = User.query.filter_by(email=email).first()
+        if not user:
+            return jsonify({'status': 'error', 'message': 'User not found'}), 404
+            
+        # Flow validation: Ensure user is actually High risk
+        if user.risk_level != 'high':
+             return jsonify({'status': 'error', 'message': 'Biometric not required for this risk level'}), 400
+
+        # Simulate Biometric Success
+        login_user(user)
+        log_security_event('BIOMETRIC_SUCCESS', email, 'high', ip_address)
+        
+        return jsonify({
+            'status': 'success',
+            'risk_level': 'high',
+            'message': 'Biometric verified. Login successful.',
+            'user': {'email': email}
+        }), 200
+        
+    except Exception as e:
+        return jsonify({'status': 'error', 'message': str(e)}), 500
+
+
+@app.route('/api/logout', methods=['POST'])
+def logout():
+    logout_user()
+    return jsonify({'status': 'success', 'message': 'Logged out'})
 
 @app.route('/api/user/security-status', methods=['GET'])
 def get_security_status():
@@ -221,46 +372,25 @@ def get_readiness():
 
 @app.route('/api/admin/logs', methods=['GET'])
 def get_logs():
-    """Get security logs"""
+    # Only for demo - read the log file
     try:
-        # Static log data
-        logs = [
-            {'email': 'user1@example.com', 'result': 'Success', 'risk': 'Low', 'mfa': 'No'},
-            {'email': 'user2@example.com', 'result': 'Success', 'risk': 'Medium', 'mfa': 'Yes'},
-            {'email': 'admin@example.com', 'result': 'Success', 'risk': 'Low', 'mfa': 'No'},
-            {'email': 'user3@example.com', 'result': 'Failed', 'risk': 'High', 'mfa': 'Yes'},
-            {'email': 'user4@example.com', 'result': 'Success', 'risk': 'Medium', 'mfa': 'Yes'},
-            {'email': 'user5@example.com', 'result': 'Failed', 'risk': 'High', 'mfa': 'Yes'}
-        ]
-        
-        return jsonify({
-            'status': 'success',
-            'data': logs
-        }), 200
-        
+        logs = []
+        if os.path.exists('security_events.log'):
+            with open('security_events.log', 'r') as f:
+                for line in f:
+                    try:
+                        logs.append(json.loads(line))
+                    except:
+                        continue
+        # Return last 50 logs
+        return jsonify({'status': 'success', 'data': logs[-50:]}), 200
     except Exception as e:
         return jsonify({'status': 'error', 'message': str(e)}), 500
 
-
-@app.route('/api/logout', methods=['POST'])
-def logout():
-    """Logout current user"""
-    try:
-        logout_user()
-        return jsonify({
-            'status': 'success',
-            'message': 'Logged out successfully'
-        }), 200
-    except Exception as e:
-        return jsonify({'status': 'error', 'message': str(e)}), 500
-
-
-# Health check endpoint
 @app.route('/api/health', methods=['GET'])
 def health():
-    """Health check"""
-    return jsonify({'status': 'ok', 'message': 'API is running'}), 200
+    return jsonify({'status': 'ok'}), 200
 
-
+import os
 if __name__ == '__main__':
     app.run(debug=True, port=5000)

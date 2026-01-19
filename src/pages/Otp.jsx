@@ -8,8 +8,8 @@ function Otp() {
     const [otp, setOtp] = useState('');
     const [error, setError] = useState('');
 
-    // Get email from navigation state or fallback for testing
-    const email = location.state?.email || "user@example.com";
+    // Get email from navigation state or localStorage or fallback
+    const email = location.state?.email || localStorage.getItem('userEmail') || "user@example.com";
 
     const handleChange = (e) => {
         // Only allow numeric input
@@ -36,7 +36,10 @@ function Otp() {
             const data = await response.json();
 
             if (data.status === 'success') {
+                localStorage.setItem('userEmail', email); // Persist for dashboard
                 navigate('/dashboard');
+            } else if (data.status === 'biometric_required') {
+                navigate('/biometric-verification');
             } else {
                 setError(data.message || 'OTP verification failed. Please try again.');
             }

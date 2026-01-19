@@ -8,6 +8,8 @@ import Otp from './pages/Otp';
 import Dashboard from './pages/Dashboard';
 import Logs from './pages/Logs';
 
+import BiometricVerification from './pages/BiometricVerification';
+
 function App() {
     return (
         <Router>
@@ -17,6 +19,7 @@ function App() {
                 <Route path="/register" element={<Register />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/otp" element={<Otp />} />
+                <Route path="/biometric-verification" element={<BiometricVerification />} />
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/logs" element={<Logs />} />
                 {/* Additional routes will be added in later steps */}

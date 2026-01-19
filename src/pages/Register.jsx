@@ -77,7 +77,8 @@ function Register() {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     email: formData.email,
-                    password: formData.password
+                    password: formData.password,
+                    risk_level: evaluationMetrics?.riskLabel?.toLowerCase() || 'high' // Fallback to high if unknown
                 }),
             });
 
