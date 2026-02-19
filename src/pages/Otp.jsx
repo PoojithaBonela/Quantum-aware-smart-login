@@ -8,8 +8,20 @@ function Otp() {
     const [otp, setOtp] = useState('');
     const [error, setError] = useState('');
 
+<<<<<<< HEAD
     // Get email from navigation state or localStorage or fallback
     const email = location.state?.email || localStorage.getItem('userEmail') || "user@example.com";
+=======
+    // Get email from navigation state or fallback for testing
+    const email = location.state?.email;
+
+    // Redirect to login if email is missing (e.g. direct URL access)
+    React.useEffect(() => {
+        if (!email) {
+            navigate('/login');
+        }
+    }, [email, navigate]);
+>>>>>>> second-version
 
     const handleChange = (e) => {
         // Only allow numeric input
@@ -30,13 +42,18 @@ function Otp() {
             const response = await fetch('http://localhost:5000/api/verify-otp', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
+                credentials: 'include',
                 body: JSON.stringify({ email, otp }),
             });
 
             const data = await response.json();
 
+<<<<<<< HEAD
             if (data.status === 'success') {
                 localStorage.setItem('userEmail', email); // Persist for dashboard
+=======
+            if (response.ok && data.status === 'success') {
+>>>>>>> second-version
                 navigate('/dashboard');
             } else if (data.status === 'biometric_required') {
                 navigate('/biometric-verification');
@@ -44,7 +61,7 @@ function Otp() {
                 setError(data.message || 'OTP verification failed. Please try again.');
             }
         } catch (err) {
-            setError('OTP verification failed. Please try again.');
+            setError('Connection error. Please try again later.');
         }
     };
 

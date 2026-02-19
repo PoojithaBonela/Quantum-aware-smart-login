@@ -702,3 +702,77 @@
 127.0.0.1 - - [19/Jan/2026 12:36:41] "GET /api/user/security-status HTTP/1.1" 200 -
 127.0.0.1 - - [19/Jan/2026 17:55:44] "GET /api/user/security-status HTTP/1.1" 200 -
 127.0.0.1 - - [19/Jan/2026 17:55:45] "GET /api/user/security-status HTTP/1.1" 200 -
+<<<<<<< HEAD
+=======
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 956-883-589
+127.0.0.1 - - [30/Jan/2026 10:22:33] "OPTIONS /api/register HTTP/1.1" 200 -
+{"timestamp": "2026-01-30T04:52:34.837173", "event_type": "REGISTER_SUCCESS", "email": "mehergayatri17@gmail.com", "risk_level": "high", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [30/Jan/2026 10:22:34] "[35m[1mPOST /api/register HTTP/1.1[0m" 201 -
+127.0.0.1 - - [30/Jan/2026 10:22:50] "OPTIONS /api/login HTTP/1.1" 200 -
+{"timestamp": "2026-01-30T04:52:51.674157", "event_type": "LOGIN_ATTEMPT_VALID", "email": "mehergayatri17@gmail.com", "risk_level": "high", "ip_address": "127.0.0.1", "details": {}}
+{"timestamp": "2026-01-30T04:52:55.694189", "event_type": "OTP_SENT", "email": "mehergayatri17@gmail.com", "risk_level": "high", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [30/Jan/2026 10:22:55] "POST /api/login HTTP/1.1" 200 -
+127.0.0.1 - - [30/Jan/2026 10:23:42] "OPTIONS /api/verify-otp HTTP/1.1" 200 -
+{"timestamp": "2026-01-30T04:53:42.425767", "event_type": "OTP_SUCCESS", "email": "mehergayatri17@gmail.com", "risk_level": "high", "ip_address": "127.0.0.1", "details": {}}
+{"timestamp": "2026-01-30T04:53:42.427415", "event_type": "BIOMETRIC_REDIRECT", "email": "mehergayatri17@gmail.com", "risk_level": "high", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [30/Jan/2026 10:23:42] "POST /api/verify-otp HTTP/1.1" 200 -
+127.0.0.1 - - [30/Jan/2026 10:23:44] "OPTIONS /api/verify-biometric HTTP/1.1" 200 -
+127.0.0.1 - - [30/Jan/2026 10:23:44] "OPTIONS /api/verify-biometric HTTP/1.1" 200 -
+{"timestamp": "2026-01-30T04:53:44.763646", "event_type": "BIOMETRIC_SUCCESS", "email": "mehergayatri17@gmail.com", "risk_level": "high", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [30/Jan/2026 10:23:44] "POST /api/verify-biometric HTTP/1.1" 200 -
+{"timestamp": "2026-01-30T04:53:45.071638", "event_type": "BIOMETRIC_SUCCESS", "email": "mehergayatri17@gmail.com", "risk_level": "high", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [30/Jan/2026 10:23:45] "POST /api/verify-biometric HTTP/1.1" 200 -
+127.0.0.1 - - [30/Jan/2026 10:23:46] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [30/Jan/2026 10:23:46] "GET /api/user/security-status HTTP/1.1" 200 -
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 956-883-589
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 956-883-589
+127.0.0.1 - - [19/Feb/2026 13:17:23] "OPTIONS /api/login HTTP/1.1" 200 -
+{"timestamp": "2026-02-19T07:47:25.057957", "event_type": "LOGIN_ATTEMPT_VALID", "email": "poojitha.bonela_2027@woxsen.edu.in", "risk_level": "low", "ip_address": "127.0.0.1", "details": {}}
+{"timestamp": "2026-02-19T07:47:25.061615", "event_type": "LOGIN_SUCCESS", "email": "poojitha.bonela_2027@woxsen.edu.in", "risk_level": "low", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [19/Feb/2026 13:17:25] "POST /api/login HTTP/1.1" 200 -
+127.0.0.1 - - [19/Feb/2026 13:17:25] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [19/Feb/2026 13:17:25] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [19/Feb/2026 13:17:31] "GET /api/admin/readiness HTTP/1.1" 200 -
+127.0.0.1 - - [19/Feb/2026 13:17:31] "GET /api/admin/logs HTTP/1.1" 200 -
+127.0.0.1 - - [19/Feb/2026 13:17:32] "GET /api/admin/readiness HTTP/1.1" 200 -
+127.0.0.1 - - [19/Feb/2026 13:17:32] "GET /api/admin/logs HTTP/1.1" 200 -
+127.0.0.1 - - [19/Feb/2026 13:17:37] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [19/Feb/2026 13:17:37] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [19/Feb/2026 13:17:41] "GET /api/admin/readiness HTTP/1.1" 200 -
+127.0.0.1 - - [19/Feb/2026 13:17:41] "GET /api/admin/logs HTTP/1.1" 200 -
+127.0.0.1 - - [19/Feb/2026 13:17:41] "GET /api/admin/readiness HTTP/1.1" 200 -
+127.0.0.1 - - [19/Feb/2026 13:17:41] "GET /api/admin/logs HTTP/1.1" 200 -
+127.0.0.1 - - [19/Feb/2026 13:18:20] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [19/Feb/2026 13:18:20] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [19/Feb/2026 13:19:19] "OPTIONS /api/login HTTP/1.1" 200 -
+{"timestamp": "2026-02-19T07:49:20.228451", "event_type": "LOGIN_ATTEMPT_VALID", "email": "poojitha.bonela_2027@woxsen.edu.in", "risk_level": "low", "ip_address": "127.0.0.1", "details": {}}
+{"timestamp": "2026-02-19T07:49:20.232814", "event_type": "LOGIN_SUCCESS", "email": "poojitha.bonela_2027@woxsen.edu.in", "risk_level": "low", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [19/Feb/2026 13:19:20] "POST /api/login HTTP/1.1" 200 -
+127.0.0.1 - - [19/Feb/2026 13:19:20] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [19/Feb/2026 13:19:20] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [19/Feb/2026 13:19:37] "OPTIONS /api/register HTTP/1.1" 200 -
+127.0.0.1 - - [19/Feb/2026 13:19:37] "[31m[1mPOST /api/register HTTP/1.1[0m" 400 -
+127.0.0.1 - - [19/Feb/2026 13:19:39] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [19/Feb/2026 13:19:39] "GET /api/user/security-status HTTP/1.1" 200 -
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 956-883-589
+>>>>>>> second-version

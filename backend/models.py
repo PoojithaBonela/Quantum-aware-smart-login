@@ -16,12 +16,26 @@ class User(UserMixin, db.Model):
     # Security fields
     risk_level = db.Column(db.String(20), default='low')
     mfa_enabled = db.Column(db.Boolean, default=True)
+<<<<<<< HEAD
     failed_login_attempts = db.Column(db.Integer, default=0)
     lockout_until = db.Column(db.DateTime, nullable=True)
+=======
+    password_patterns = db.Column(db.Text, default='[]')
+    otp_code = db.Column(db.String(6), nullable=True)
+    otp_expiry = db.Column(db.DateTime, nullable=True)
+    failed_attempts = db.Column(db.Integer, default=0)
+    lockout_until = db.Column(db.DateTime, nullable=True)
+    lockout_count = db.Column(db.Integer, default=0)
+    biometrics_enrolled = db.Column(db.Boolean, default=False)
+    
+    # Relationships
+    biometrics = db.relationship('UserBiometric', backref='user', lazy=True)
+>>>>>>> second-version
     
     def __repr__(self):
         return f'<User {self.email}>'
 
+<<<<<<< HEAD
 class OTPVerification(db.Model):
     __tablename__ = 'otp_verifications'
     
@@ -34,3 +48,28 @@ class OTPVerification(db.Model):
     
     def __repr__(self):
         return f'<OTP {self.email}>'
+=======
+class UserBiometric(db.Model):
+    __tablename__ = 'user_biometrics'
+    
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    face_embedding = db.Column(db.Text, nullable=False)  # JSON format (encrypted)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+class LoginLog(db.Model):
+    __tablename__ = 'login_logs'
+    
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(120), nullable=False)
+    timestamp = db.Column(db.DateTime, default=datetime.utcnow)
+    ip_address = db.Column(db.String(45))
+    device_info = db.Column(db.String(255))
+    result = db.Column(db.String(50))  # Success, Failed, MFA Required, Locked Out
+    risk_level = db.Column(db.String(20))
+    mfa_triggered = db.Column(db.Boolean, default=False)
+    failure_reason = db.Column(db.String(255))
+    
+    def __repr__(self):
+        return f'<Log {self.email} @ {self.timestamp}>'
+>>>>>>> second-version

@@ -61,6 +61,10 @@ function Logs() {
             ) : readiness ? (
                 <div className="readiness-summary">
                     <div className="metric-box">
+                        <span className="metric-label">Total Users</span>
+                        <span className="metric-value">{readiness.total_users}</span>
+                    </div>
+                    <div className="metric-box border-x">
                         <span className="metric-label">Quantum Safe</span>
                         <span className="metric-value safe">{readiness.quantum_safe}{typeof readiness.quantum_safe === 'number' ? '%' : ''}</span>
                     </div>
@@ -80,7 +84,12 @@ function Logs() {
             <div className="log-section">
                 <div className="section-title">
                     <h2>Security Audit Logs</h2>
-                    <button className="refresh-button" onClick={fetchData}>Refresh Logs</button>
+                    <div className="admin-actions">
+                        <button className="download-button" onClick={() => window.open('http://localhost:5000/api/admin/logs/download', '_blank')}>
+                            Download security Report
+                        </button>
+                        <button className="refresh-button" onClick={fetchData}>Refresh Logs</button>
+                    </div>
                 </div>
 
                 {logsError ? (
@@ -92,33 +101,39 @@ function Logs() {
                         <table className="log-table">
                             <thead>
                                 <tr>
+                                    <th>Timestamp</th>
                                     <th>Email</th>
-                                    <th>Login Result</th>
+                                    <th>IP Address</th>
+                                    <th>Device</th>
+                                    <th>Result</th>
                                     <th>Risk Level</th>
-                                    <th>MFA Triggered</th>
+                                    <th>MFA</th>
+                                    <th>Details</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {logs.length > 0 ? (
                                     logs.map((log, index) => (
                                         <tr key={index}>
+                                            <td className="time-col">{log.timestamp}</td>
                                             <td>{log.email}</td>
+                                            <td className="ip-col">{log.ip}</td>
+                                            <td className="device-col" title={log.device}>
+                                                {log.device.length > 20 ? log.device.substring(0, 20) + '...' : log.device}
+                                            </td>
                                             <td>
-                                                <span className={`pill ${(log.login_result || log.result || '').toLowerCase()}`}>
-                                                    {log.login_result || log.result}
+                                                <span className={`pill ${(log.result || '').toLowerCase().replace(' ', '-')}`}>
+                                                    {log.result}
                                                 </span>
                                             </td>
-                                            <td>{log.risk_level || log.risk}</td>
-                                            <td>
-                                                {log.mfa_triggered !== undefined
-                                                    ? (log.mfa_triggered ? 'Yes' : 'No')
-                                                    : (log.mfa || 'No')}
-                                            </td>
+                                            <td>{log.risk}</td>
+                                            <td>{log.mfa}</td>
+                                            <td className="reason-col">{log.reason || '-'}</td>
                                         </tr>
                                     ))
                                 ) : (
                                     <tr>
-                                        <td colSpan="4" className="empty-logs">No security logs available.</td>
+                                        <td colSpan="8" className="empty-logs">No security logs available.</td>
                                     </tr>
                                 )}
                             </tbody>

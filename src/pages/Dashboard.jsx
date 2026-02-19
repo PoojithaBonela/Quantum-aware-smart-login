@@ -8,26 +8,38 @@ function Dashboard() {
     const [error, setError] = useState('');
 
     useEffect(() => {
-        // Fetch security status from backend
-        fetch('http://localhost:5000/api/user/security-status')
+        // Fetch security status from backend with cache-busting
+        fetch('http://localhost:5000/api/user/security-status', {
+            credentials: 'include',
+            cache: 'no-store'
+        })
             .then(res => {
+                if (res.status === 401) {
+                    navigate('/login');
+                    throw new Error('Please log in again.');
+                }
                 if (!res.ok) throw new Error('Failed to fetch');
                 return res.json();
             })
             .then(data => {
-                // Support both nested and flat JSON structures for robustness
                 const status = data.data || data;
                 setSecurityData(status);
             })
             .catch(err => {
-                console.error('Failed to fetch security status', err);
-                setError('Unable to load security status.');
+                console.error('Security status error:', err);
+                setError(err.message || 'Unable to load security status.');
             });
-    }, []);
+    }, [navigate]);
 
     const handleLogout = () => {
-        fetch('http://localhost:5000/api/logout', { method: 'POST' })
-            .finally(() => navigate('/login'));
+        fetch('http://localhost:5000/api/logout', {
+            method: 'POST',
+            credentials: 'include'
+        })
+            .finally(() => {
+                setSecurityData(null);
+                navigate('/login');
+            });
     };
 
     if (error) {
@@ -58,6 +70,7 @@ function Dashboard() {
         <div className="dashboard-container">
             <div className="dashboard-header">
                 <h1>Account Security</h1>
+                <p className="user-email">Logged in as: <strong>{securityData.email}</strong></p>
                 <p>Real-time monitoring and risk evaluation</p>
             </div>
 
@@ -85,7 +98,7 @@ function Dashboard() {
 
             <div className="recommendation-panel">
                 <h3>Security Recommendation</h3>
-                <p>{securityData.recommendation}</p>
+                <p className="recommendation-text">{securityData.recommendation}</p>
             </div>
 
             <div className="dashboard-footer">
