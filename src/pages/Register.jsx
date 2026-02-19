@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { evaluateSecurityMetrics } from '../utils/passwordAnalysis';
 import PasswordStrengthModal from '../components/PasswordStrengthModal';
+import BiometricModal from '../components/BiometricModal';
 import './Register.css';
 
 function Register() {
@@ -16,10 +17,11 @@ function Register() {
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-    // Evaluation state
     const [evaluationMetrics, setEvaluationMetrics] = useState(null);
     const [showModal, setShowModal] = useState(false);
     const [isConfirmed, setIsConfirmed] = useState(false);
+    const [showBiometricEnroll, setShowBiometricEnroll] = useState(false);
+    const [capturedBiometrics, setCapturedBiometrics] = useState(null);
 
     const validatePassword = (password) => {
         const minLength = 8;
@@ -63,11 +65,17 @@ function Register() {
             return;
         }
 
-        // Trigger evaluation if not yet confirmed
+        // 1. Trigger evaluation if not yet confirmed
         if (!isConfirmed) {
             const metrics = evaluateSecurityMetrics(formData.password, formData.email);
             setEvaluationMetrics(metrics);
             setShowModal(true);
+            return;
+        }
+
+        // 2. Trigger biometric enrollment if high risk and not yet captured
+        if (evaluationMetrics?.riskLabel === 'HIGH' && !capturedBiometrics) {
+            setShowBiometricEnroll(true);
             return;
         }
 
@@ -78,7 +86,8 @@ function Register() {
                 credentials: 'include',
                 body: JSON.stringify({
                     email: formData.email,
-                    password: formData.password
+                    password: formData.password,
+                    biometricData: capturedBiometrics // Send if available
                 }),
             });
 
@@ -183,6 +192,22 @@ function Register() {
                             if (submitBtn) submitBtn.click();
                         }, 100);
                     }}
+                />
+            )}
+            {showBiometricEnroll && (
+                <BiometricModal
+                    mode="enroll"
+                    email={formData.email}
+                    onCapture={(embeddings) => {
+                        setCapturedBiometrics(embeddings);
+                        setShowBiometricEnroll(false);
+                        // Now trigger the final submission
+                        setTimeout(() => {
+                            const btn = document.querySelector('.auth-button');
+                            if (btn) btn.click();
+                        }, 100);
+                    }}
+                    onCancel={() => setShowBiometricEnroll(false)}
                 />
             )}
         </div>

@@ -22,9 +22,21 @@ class User(UserMixin, db.Model):
     failed_attempts = db.Column(db.Integer, default=0)
     lockout_until = db.Column(db.DateTime, nullable=True)
     lockout_count = db.Column(db.Integer, default=0)
+    biometrics_enrolled = db.Column(db.Boolean, default=False)
+    
+    # Relationships
+    biometrics = db.relationship('UserBiometric', backref='user', lazy=True)
     
     def __repr__(self):
         return f'<User {self.email}>'
+
+class UserBiometric(db.Model):
+    __tablename__ = 'user_biometrics'
+    
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    face_embedding = db.Column(db.Text, nullable=False)  # JSON format (encrypted)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
 class LoginLog(db.Model):
     __tablename__ = 'login_logs'

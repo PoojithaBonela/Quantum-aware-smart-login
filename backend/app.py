@@ -7,7 +7,7 @@ from email_validator import validate_email, EmailNotValidError
 from datetime import datetime, timedelta
 import random
 
-from models import db, User, LoginLog
+from models import db, User, LoginLog, UserBiometric
 
 app = Flask(__name__)
 
@@ -17,6 +17,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///security.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'
 app.config['SESSION_COOKIE_SECURE'] = False # http only for dev
+app.config['BIOMETRIC_KEY'] = 'quantum-secret-123' # For basic encryption
 
 # SMTP Configuration (will use .env values if set)
 import os
@@ -62,7 +63,8 @@ with app.app_context():
         ('otp_expiry', 'DATETIME'),
         ('failed_attempts', 'INTEGER DEFAULT 0'),
         ('lockout_until', 'DATETIME'),
-        ('lockout_count', 'INTEGER DEFAULT 0')
+        ('lockout_count', 'INTEGER DEFAULT 0'),
+        ('biometrics_enrolled', 'BOOLEAN DEFAULT 0')
     ]
     
     for col_name, col_type in columns_to_add:
@@ -149,6 +151,75 @@ def cleanup_old_logs():
     except Exception as e:
         print(f"Cleanup error: {e}")
         db.session.rollback()
+
+def send_otp_email(email, risk_level):
+    """Generate and send OTP to user"""
+    otp = f"{random.randint(100000, 999999)}"
+    expiry = datetime.utcnow() + timedelta(minutes=5)
+    
+    user = User.query.filter_by(email=email).first()
+    if user:
+        user.otp_code = otp
+        user.otp_expiry = expiry
+        db.session.commit()
+        
+    try:
+        msg = Message(
+            "Your Secure Login OTP",
+            sender=app.config['MAIL_DEFAULT_SENDER'],
+            recipients=[email]
+        )
+        msg.body = f"Hello,\n\nA login attempt for your account ({email}) was detected as {risk_level} risk.\n\nYour 6-digit verification code is: {otp}\n\nThis code will expire in 5 minutes.\n\nIf you did not attempt to log in, please secure your account immediately."
+        mail.send(msg)
+        print(f"OTP sent to {email}")
+        return True
+    except Exception as e:
+        print(f"Failed to send email: {e}")
+        return False
+
+# ==================== BIOMETRIC HELPERS ====================
+import base64
+
+def basic_encrypt(data, key):
+    """Simple XOR-based 'basic' encryption for embeddings"""
+    encoded = base64.b64encode(data.encode()).decode()
+    result = []
+    for i in range(len(encoded)):
+        key_c = key[i % len(key)]
+        enc_c = chr(ord(encoded[i]) ^ ord(key_c))
+        result.append(enc_c)
+    return base64.b64encode("".join(result).encode()).decode()
+
+def basic_decrypt(encoded_data, key):
+    """Simple XOR-based 'basic' decryption for embeddings"""
+    try:
+        decoded_enc = base64.b64decode(encoded_data.encode()).decode()
+        result = []
+        for i in range(len(decoded_enc)):
+            key_c = key[i % len(key)]
+            dec_c = chr(ord(decoded_enc[i]) ^ ord(key_c))
+            result.append(dec_c)
+        return base64.b64decode("".join(result).encode()).decode()
+    except Exception:
+        return "{}"
+
+def compare_embeddings(saved_embeddings_json, live_embedding, threshold=0.6):
+    """
+    Compare live embedding with 3 saved embeddings using Euclidean distance.
+    Returns True if any match is within threshold.
+    """
+    import math
+    try:
+        saved_list = json.loads(saved_embeddings_json)
+        for saved in saved_list:
+            # Euclidean distance
+            dist = math.sqrt(sum((s - l) ** 2 for s, l in zip(saved, live_embedding)))
+            if dist < threshold:
+                return True, dist
+        return False, 999
+    except Exception as e:
+        print(f"Comparison error: {e}")
+        return False, 999
 
 # ==================== HELPERS ====================
 
@@ -310,6 +381,7 @@ def register():
         data = request.get_json()
         email = data.get('email')
         password = data.get('password')
+        biometric_data = data.get('biometricData')
         
         # Validate input
         if not email or not password:
@@ -353,6 +425,16 @@ def register():
         
         db.session.add(new_user)
         db.session.commit()
+        
+        # Biometric enrollment if provided
+        # Biometric enrollment if provided
+        if biometric_data and len(biometric_data) == 3:
+            encrypted = basic_encrypt(json.dumps(biometric_data), app.config['BIOMETRIC_KEY'])
+            new_biometric = UserBiometric(user_id=new_user.id, face_embedding=encrypted)
+            new_user.biometrics_enrolled = True
+            db.session.add(new_biometric)
+            db.session.commit()
+            print(f"REGISTER: Biometrics stored for {email}")
         
         return jsonify({
             'status': 'success',
@@ -428,6 +510,14 @@ def login():
         db.session.commit()
         
         # Decide if MFA is required (high and medium risk trigger MFA)
+        if risk_level == 'high' and user.biometrics_enrolled:
+             add_audit_log(email, 'Biometric Required', 'High', mfa_triggered=True)
+             return jsonify({
+                 'status': 'biometric_required',
+                 'risk_level': risk_level,
+                 'message': 'Face verification required for high-risk account.'
+             }), 200
+
         if risk_level in ['high', 'medium']:
             # Log the MFA requirement
             add_audit_log(email, 'MFA Required', risk_level.capitalize(), mfa_triggered=True)
@@ -436,27 +526,7 @@ def login():
             user.failed_attempts = 0
             db.session.commit()
             
-            # Generate real OTP
-            # Generate real OTP
-            otp = f"{random.randint(100000, 999999)}"
-            expiry = datetime.utcnow() + timedelta(minutes=5)
-            user.otp_code = otp
-            user.otp_expiry = expiry
-            db.session.commit()
-            
-            # Send OTP Email
-            try:
-                msg = Message(
-                    "Your Secure Login OTP",
-                    sender=app.config['MAIL_DEFAULT_SENDER'],
-                    recipients=[email]
-                )
-                msg.body = f"Hello,\n\nA login attempt for your account ({email}) was detected as {risk_level} risk.\n\nYour 6-digit verification code is: {otp}\n\nThis code will expire in 5 minutes.\n\nIf you did not attempt to log in, please secure your account immediately."
-                mail.send(msg)
-                print(f"OTP sent to {email}")
-            except Exception as e:
-                print(f"Failed to send email: {e}")
-                # In a real app, we might want to handle this more gracefully
+            send_otp_email(email, risk_level)
             
             return jsonify({
                 'status': 'mfa_required',
@@ -758,6 +828,99 @@ def logout():
     except Exception as e:
         return jsonify({'status': 'error', 'message': str(e)}), 500
 
+
+# ==================== BIOMETRIC ENDPOINTS ====================
+
+@app.route('/api/biometric/enroll', methods=['POST'])
+def enroll_biometric():
+    """Enroll face embeddings for a high-risk user"""
+    try:
+        data = request.get_json()
+        email = data.get('email')
+        embeddings = data.get('embeddings') # List of 3 embeddings
+        
+        if not email or not embeddings or len(embeddings) != 3:
+            return jsonify({'status': 'error', 'message': 'Invalid enrollment data'}), 400
+            
+        user = User.query.filter_by(email=email).first()
+        if not user:
+            return jsonify({'status': 'error', 'message': 'User not found'}), 404
+            
+        # Encrypt embeddings JSON
+        encrypted_embeddings = basic_encrypt(json.dumps(embeddings), app.config['BIOMETRIC_KEY'])
+        
+        # Store in table
+        new_biometric = UserBiometric(
+            user_id=user.id,
+            face_embedding=encrypted_embeddings
+        )
+        user.biometrics_enrolled = True
+        
+        db.session.add(new_biometric)
+        db.session.commit()
+        
+        add_audit_log(email, 'Biometric Enrolled', user.risk_level.capitalize())
+        
+        return jsonify({
+            'status': 'success',
+            'message': 'Biometric data enrolled successfully'
+        }), 200
+        
+    except Exception as e:
+        return jsonify({'status': 'error', 'message': str(e)}), 500
+
+@app.route('/api/biometric/verify', methods=['POST'])
+def verify_biometric():
+    """Verify live face embedding against stored data"""
+    try:
+        data = request.get_json()
+        email = data.get('email')
+        live_embedding = data.get('embedding')
+        
+        if not email or not live_embedding:
+            return jsonify({'status': 'error', 'message': 'Missing verification data'}), 400
+            
+        user = User.query.filter_by(email=email).first()
+        if not user or not user.biometrics_enrolled:
+            return jsonify({'status': 'error', 'message': 'Biometrics not available'}), 404
+            
+        # Get latest biometric data
+        biometric_record = UserBiometric.query.filter_by(user_id=user.id).order_by(UserBiometric.created_at.desc()).first()
+        if not biometric_record:
+            return jsonify({'status': 'error', 'message': 'No biometric record found'}), 404
+            
+        # Decrypt and compare
+        saved_json = basic_decrypt(biometric_record.face_embedding, app.config['BIOMETRIC_KEY'])
+        match, distance = compare_embeddings(saved_json, live_embedding)
+        
+        if match:
+            # If high risk, we still require OTP after biometric
+            if user.risk_level.lower() == 'high':
+                send_otp_email(email, 'High')
+                return jsonify({
+                    'status': 'mfa_required',
+                    'message': 'Biometric verified. Please enter the OTP sent to your email.',
+                    'user': {'email': user.email}
+                }), 200
+            
+            # Otherwise (if we ever use biometrics for medium), login directly
+            login_user(user)
+            reset_attempts(user)
+            add_audit_log(email, 'Success (Biometric)', user.risk_level.capitalize(), mfa_triggered=True)
+            return jsonify({
+                'status': 'success',
+                'message': 'Biometric verification successful',
+                'user': {'email': user.email}
+            }), 200
+        else:
+            add_audit_log(email, 'Failed (Biometric)', user.risk_level.capitalize(), mfa_triggered=True, failure_reason=f"Face mismatch (dist: {distance:.3f})")
+            return jsonify({
+                'status': 'error',
+                'message': 'Face verification failed'
+            }), 401
+            
+    except Exception as e:
+        return jsonify({'status': 'error', 'message': str(e)}), 500
 
 # Health check endpoint
 @app.route('/api/health', methods=['GET'])

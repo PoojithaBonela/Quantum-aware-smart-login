@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import BiometricModal from '../components/BiometricModal';
 import './Register.css'; // Using the same base styling as Register
 
 function Login() {
@@ -10,6 +11,7 @@ function Login() {
     });
     const [error, setError] = useState('');
     const [showPassword, setShowPassword] = useState(false);
+    const [showBiometricVerify, setShowBiometricVerify] = useState(false);
 
     const handleChange = (e) => {
         setFormData({
@@ -45,6 +47,8 @@ function Login() {
                     navigate('/dashboard');
                 } else if (data.status === 'mfa_required') {
                     navigate('/otp', { state: { email: formData.email } });
+                } else if (data.status === 'biometric_required') {
+                    setShowBiometricVerify(true);
                 }
             } else {
                 setError(data.message || 'Login failed. Please try again.');
@@ -103,6 +107,21 @@ function Login() {
                     Don't have an account? <span onClick={() => navigate('/register')}>Sign up</span>
                 </p>
             </div>
+
+            {showBiometricVerify && (
+                <BiometricModal
+                    mode="verify"
+                    email={formData.email}
+                    onComplete={(data) => {
+                        if (data.status === 'mfa_required') {
+                            navigate('/otp', { state: { email: formData.email } });
+                        } else {
+                            navigate('/dashboard');
+                        }
+                    }}
+                    onCancel={() => setShowBiometricVerify(false)}
+                />
+            )}
         </div>
     );
 }
