@@ -1,0 +1,775 @@
+ * Debugger is active!
+ * Debugger PIN: 956-883-589
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 956-883-589
+{"timestamp": "2026-01-18T15:43:03.778233", "event_type": "REGISTER_SUCCESS", "email": "test_otp@example.com", "risk_level": "low", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 21:13:03] "[35m[1mPOST /api/register HTTP/1.1[0m" 201 -
+{"timestamp": "2026-01-18T15:43:07.841295", "event_type": "LOGIN_ATTEMPT_VALID", "email": "test_otp@example.com", "risk_level": "high", "ip_address": "127.0.0.1", "details": {}}
+{"timestamp": "2026-01-18T15:43:09.978324", "event_type": "OTP_SEND_ERROR", "email": "test_otp@example.com", "risk_level": "high", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 21:13:09] "[35m[1mPOST /api/login HTTP/1.1[0m" 500 -
+127.0.0.1 - - [18/Jan/2026 21:14:36] "OPTIONS /api/register HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 21:14:36] "[31m[1mPOST /api/register HTTP/1.1[0m" 400 -
+127.0.0.1 - - [18/Jan/2026 21:14:49] "OPTIONS /api/login HTTP/1.1" 200 -
+{"timestamp": "2026-01-18T15:44:49.771619", "event_type": "LOGIN_ATTEMPT_VALID", "email": "diptisingh202006@gmail.com", "risk_level": "low", "ip_address": "127.0.0.1", "details": {}}
+{"timestamp": "2026-01-18T15:44:49.774836", "event_type": "LOGIN_SUCCESS", "email": "diptisingh202006@gmail.com", "risk_level": "low", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 21:14:49] "POST /api/login HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 21:14:49] "[33mGET /api/user/security-status HTTP/1.1[0m" 404 -
+127.0.0.1 - - [18/Jan/2026 21:14:50] "[33mGET /api/user/security-status HTTP/1.1[0m" 404 -
+127.0.0.1 - - [18/Jan/2026 21:14:58] "OPTIONS /api/login HTTP/1.1" 200 -
+{"timestamp": "2026-01-18T15:44:59.196073", "event_type": "LOGIN_ATTEMPT_VALID", "email": "diptisingh202006@gmail.com", "risk_level": "medium", "ip_address": "127.0.0.1", "details": {}}
+{"timestamp": "2026-01-18T15:45:01.121798", "event_type": "LOGIN_ATTEMPT_VALID", "email": "diptisingh202006@gmail.com", "risk_level": "low", "ip_address": "127.0.0.1", "details": {}}
+{"timestamp": "2026-01-18T15:45:01.123177", "event_type": "LOGIN_SUCCESS", "email": "diptisingh202006@gmail.com", "risk_level": "low", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 21:15:01] "POST /api/login HTTP/1.1" 200 -
+{"timestamp": "2026-01-18T15:45:01.394839", "event_type": "OTP_SEND_ERROR", "email": "diptisingh202006@gmail.com", "risk_level": "medium", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 21:15:01] "[35m[1mPOST /api/login HTTP/1.1[0m" 500 -
+127.0.0.1 - - [18/Jan/2026 21:15:01] "[33mGET /api/user/security-status HTTP/1.1[0m" 404 -
+127.0.0.1 - - [18/Jan/2026 21:15:01] "[33mGET /api/user/security-status HTTP/1.1[0m" 404 -
+{"timestamp": "2026-01-18T15:47:40.521822", "event_type": "LOGIN_ATTEMPT_VALID", "email": "test_otp@example.com", "risk_level": "medium", "ip_address": "127.0.0.1", "details": {}}
+{"timestamp": "2026-01-18T15:47:42.626438", "event_type": "OTP_SEND_ERROR", "email": "test_otp@example.com", "risk_level": "medium", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 21:17:42] "[35m[1mPOST /api/login HTTP/1.1[0m" 500 -
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 956-883-589
+{"timestamp": "2026-01-18T15:50:54.843006", "event_type": "LOGIN_FAIL", "email": "diptisingh202006@gmail.com", "risk_level": "unknown", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 21:20:54] "[31m[1mPOST /api/login HTTP/1.1[0m" 401 -
+127.0.0.1 - - [18/Jan/2026 21:21:40] "[31m[1mPOST /api/register HTTP/1.1[0m" 400 -
+{"timestamp": "2026-01-18T15:51:45.862922", "event_type": "LOGIN_FAIL", "email": "diptisingh202006@gmail.com", "risk_level": "unknown", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 21:21:45] "[31m[1mPOST /api/login HTTP/1.1[0m" 401 -
+{"timestamp": "2026-01-18T15:52:01.073703", "event_type": "REGISTER_SUCCESS", "email": "diptisingh_new@gmail.com", "risk_level": "low", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 21:22:01] "[35m[1mPOST /api/register HTTP/1.1[0m" 201 -
+{"timestamp": "2026-01-18T15:52:04.287700", "event_type": "LOGIN_ATTEMPT_VALID", "email": "diptisingh_new@gmail.com", "risk_level": "high", "ip_address": "127.0.0.1", "details": {}}
+{"timestamp": "2026-01-18T15:52:07.137199", "event_type": "OTP_SEND_ERROR", "email": "diptisingh_new@gmail.com", "risk_level": "high", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 21:22:07] "[35m[1mPOST /api/login HTTP/1.1[0m" 500 -
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 956-883-589
+127.0.0.1 - - [18/Jan/2026 21:27:08] "[33mGET /api/user/security-status HTTP/1.1[0m" 404 -
+127.0.0.1 - - [18/Jan/2026 21:27:09] "[33mGET /api/user/security-status HTTP/1.1[0m" 404 -
+127.0.0.1 - - [18/Jan/2026 21:28:04] "OPTIONS /api/login HTTP/1.1" 200 -
+{"timestamp": "2026-01-18T15:58:04.629538", "event_type": "LOGIN_FAIL", "email": "diptisingh202006@gmail.com", "risk_level": "unknown", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 21:28:04] "[31m[1mPOST /api/login HTTP/1.1[0m" 401 -
+127.0.0.1 - - [18/Jan/2026 21:28:19] "OPTIONS /api/login HTTP/1.1" 200 -
+{"timestamp": "2026-01-18T15:58:19.863632", "event_type": "LOGIN_ATTEMPT_VALID", "email": "diptisingh202006@gmail.com", "risk_level": "low", "ip_address": "127.0.0.1", "details": {}}
+{"timestamp": "2026-01-18T15:58:19.866252", "event_type": "LOGIN_SUCCESS", "email": "diptisingh202006@gmail.com", "risk_level": "low", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 21:28:19] "POST /api/login HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 21:28:19] "[33mGET /api/user/security-status HTTP/1.1[0m" 404 -
+127.0.0.1 - - [18/Jan/2026 21:28:20] "[33mGET /api/user/security-status HTTP/1.1[0m" 404 -
+ * Detected change in 'C:\\Users\\dipti\\OneDrive\\applicative folder\\Quantum-aware-smart-login\\backend\\app.py', reloading
+ * Restarting with stat
+ * Detected change in 'C:\\Users\\dipti\\OneDrive\\applicative folder\\Quantum-aware-smart-login\\backend\\app.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 956-883-589
+ * Debugger is active!
+ * Debugger PIN: 956-883-589
+127.0.0.1 - - [18/Jan/2026 21:30:59] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 21:30:59] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 21:31:49] "OPTIONS /api/login HTTP/1.1" 200 -
+{"timestamp": "2026-01-18T16:01:49.585740", "event_type": "LOGIN_FAIL", "email": "poojithabonela19@gmail.com", "risk_level": "unknown", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 21:31:49] "[31m[1mPOST /api/login HTTP/1.1[0m" 401 -
+127.0.0.1 - - [18/Jan/2026 21:32:32] "OPTIONS /api/register HTTP/1.1" 200 -
+{"timestamp": "2026-01-18T16:02:32.688477", "event_type": "REGISTER_SUCCESS", "email": "poojithabonela19@gmail.com", "risk_level": "low", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 21:32:32] "[35m[1mPOST /api/register HTTP/1.1[0m" 201 -
+127.0.0.1 - - [18/Jan/2026 21:32:55] "OPTIONS /api/login HTTP/1.1" 200 -
+{"timestamp": "2026-01-18T16:02:55.698973", "event_type": "LOGIN_ATTEMPT_VALID", "email": "poojithabonela19@gmail.com", "risk_level": "medium", "ip_address": "127.0.0.1", "details": {}}
+{"timestamp": "2026-01-18T16:02:57.289534", "event_type": "LOGIN_ATTEMPT_VALID", "email": "poojithabonela19@gmail.com", "risk_level": "low", "ip_address": "127.0.0.1", "details": {}}
+{"timestamp": "2026-01-18T16:02:57.292613", "event_type": "LOGIN_SUCCESS", "email": "poojithabonela19@gmail.com", "risk_level": "low", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 21:32:57] "POST /api/login HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 21:32:57] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 21:32:57] "GET /api/user/security-status HTTP/1.1" 200 -
+{"timestamp": "2026-01-18T16:02:58.849130", "event_type": "OTP_SEND_ERROR", "email": "poojithabonela19@gmail.com", "risk_level": "medium", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 21:32:58] "[35m[1mPOST /api/login HTTP/1.1[0m" 500 -
+ * Detected change in 'C:\\Users\\dipti\\OneDrive\\applicative folder\\Quantum-aware-smart-login\\backend\\app.py', reloading
+ * Detected change in 'C:\\Users\\dipti\\OneDrive\\applicative folder\\Quantum-aware-smart-login\\backend\\app.py', reloading
+ * Restarting with stat
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 956-883-589
+ * Debugger is active!
+ * Debugger PIN: 956-883-589
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 956-883-589
+127.0.0.1 - - [18/Jan/2026 21:40:21] "GET /api/admin/readiness HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 21:40:21] "GET /api/admin/logs HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 21:40:21] "GET /api/admin/readiness HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 21:40:21] "GET /api/admin/logs HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 21:41:05] "OPTIONS /api/login HTTP/1.1" 200 -
+{"timestamp": "2026-01-18T16:11:06.401627", "event_type": "LOGIN_ATTEMPT_VALID", "email": "diptisingh202006@gmail.com", "risk_level": "high", "ip_address": "127.0.0.1", "details": {}}
+{"timestamp": "2026-01-18T16:11:06.404873", "event_type": "LOGIN_SUCCESS", "email": "diptisingh202006@gmail.com", "risk_level": "high", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 21:41:06] "POST /api/login HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 21:41:06] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 21:41:06] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 21:41:25] "OPTIONS /api/login HTTP/1.1" 200 -
+{"timestamp": "2026-01-18T16:11:25.564778", "event_type": "LOGIN_ATTEMPT_VALID", "email": "poojithabonela19@gmail.com", "risk_level": "low", "ip_address": "127.0.0.1", "details": {}}
+{"timestamp": "2026-01-18T16:11:27.961483", "event_type": "LOGIN_ATTEMPT_VALID", "email": "poojithabonela19@gmail.com", "risk_level": "medium", "ip_address": "127.0.0.1", "details": {}}
+{"timestamp": "2026-01-18T16:11:28.670417", "event_type": "OTP_SEND_ERROR", "email": "poojithabonela19@gmail.com", "risk_level": "low", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 21:41:28] "[35m[1mPOST /api/login HTTP/1.1[0m" 500 -
+{"timestamp": "2026-01-18T16:11:29.970501", "event_type": "OTP_SEND_ERROR", "email": "poojithabonela19@gmail.com", "risk_level": "medium", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 21:41:29] "[35m[1mPOST /api/login HTTP/1.1[0m" 500 -
+127.0.0.1 - - [18/Jan/2026 21:41:38] "OPTIONS /api/login HTTP/1.1" 200 -
+{"timestamp": "2026-01-18T16:11:38.554710", "event_type": "LOGIN_ATTEMPT_VALID", "email": "poojithabonela19@gmail.com", "risk_level": "low", "ip_address": "127.0.0.1", "details": {}}
+{"timestamp": "2026-01-18T16:11:41.206396", "event_type": "OTP_SEND_ERROR", "email": "poojithabonela19@gmail.com", "risk_level": "low", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 21:41:41] "[35m[1mPOST /api/login HTTP/1.1[0m" 500 -
+127.0.0.1 - - [18/Jan/2026 21:41:48] "OPTIONS /api/login HTTP/1.1" 200 -
+{"timestamp": "2026-01-18T16:11:48.549116", "event_type": "LOGIN_ATTEMPT_VALID", "email": "poojithabonela19@gmail.com", "risk_level": "high", "ip_address": "127.0.0.1", "details": {}}
+{"timestamp": "2026-01-18T16:11:48.551828", "event_type": "LOGIN_SUCCESS", "email": "poojithabonela19@gmail.com", "risk_level": "high", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 21:41:48] "POST /api/login HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 21:41:48] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 21:41:48] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 21:41:53] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 21:41:53] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 21:43:04] "OPTIONS /api/register HTTP/1.1" 200 -
+{"timestamp": "2026-01-18T16:13:05.148067", "event_type": "REGISTER_SUCCESS", "email": "dipti.singh_2027@woxsen.edu.in", "risk_level": "low", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 21:43:05] "[35m[1mPOST /api/register HTTP/1.1[0m" 201 -
+127.0.0.1 - - [18/Jan/2026 21:43:24] "OPTIONS /api/login HTTP/1.1" 200 -
+{"timestamp": "2026-01-18T16:13:25.131072", "event_type": "LOGIN_ATTEMPT_VALID", "email": "dipti.singh_2027@woxsen.edu.in", "risk_level": "high", "ip_address": "127.0.0.1", "details": {}}
+{"timestamp": "2026-01-18T16:13:25.133033", "event_type": "LOGIN_SUCCESS", "email": "dipti.singh_2027@woxsen.edu.in", "risk_level": "high", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 21:43:25] "POST /api/login HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 21:43:25] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 21:43:25] "GET /api/user/security-status HTTP/1.1" 200 -
+ * Detected change in 'C:\\Users\\dipti\\OneDrive\\applicative folder\\Quantum-aware-smart-login\\backend\\app.py', reloading
+ * Restarting with stat
+ * Detected change in 'C:\\Users\\dipti\\OneDrive\\applicative folder\\Quantum-aware-smart-login\\backend\\app.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 956-883-589
+ * Debugger is active!
+ * Debugger PIN: 956-883-589
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 956-883-589
+127.0.0.1 - - [18/Jan/2026 21:46:32] "OPTIONS /api/login HTTP/1.1" 200 -
+{"timestamp": "2026-01-18T16:16:32.474919", "event_type": "LOGIN_ATTEMPT_VALID", "email": "dipti.singh_2027@woxsen.edu.in", "risk_level": "low", "ip_address": "127.0.0.1", "details": {}}
+{"timestamp": "2026-01-18T16:16:32.478829", "event_type": "LOGIN_SUCCESS", "email": "dipti.singh_2027@woxsen.edu.in", "risk_level": "low", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 21:46:32] "POST /api/login HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 21:46:32] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 21:46:32] "GET /api/user/security-status HTTP/1.1" 200 -
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 956-883-589
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 956-883-589
+127.0.0.1 - - [18/Jan/2026 21:56:56] "OPTIONS /api/login HTTP/1.1" 200 -
+{"timestamp": "2026-01-18T16:26:56.789979", "event_type": "LOGIN_ATTEMPT_VALID", "email": "dipti.singh_2027@woxsen.edu.in", "risk_level": "low", "ip_address": "127.0.0.1", "details": {}}
+{"timestamp": "2026-01-18T16:26:56.793525", "event_type": "LOGIN_SUCCESS", "email": "dipti.singh_2027@woxsen.edu.in", "risk_level": "low", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 21:56:56] "POST /api/login HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 21:56:56] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 21:56:57] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 21:57:16] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 21:57:16] "GET /api/user/security-status HTTP/1.1" 200 -
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 956-883-589
+ * Detected change in 'C:\\Users\\dipti\\OneDrive\\applicative folder\\Quantum-aware-smart-login\\backend\\app.py', reloading
+ * Detected change in 'C:\\Users\\dipti\\OneDrive\\applicative folder\\Quantum-aware-smart-login\\backend\\app.py', reloading
+ * Restarting with stat
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 956-883-589
+ * Debugger is active!
+ * Debugger PIN: 956-883-589
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 956-883-589
+ * Detected change in 'C:\\Users\\dipti\\OneDrive\\applicative folder\\Quantum-aware-smart-login\\backend\\app.py', reloading
+ * Restarting with stat
+ * Detected change in 'C:\\Users\\dipti\\OneDrive\\applicative folder\\Quantum-aware-smart-login\\backend\\app.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 956-883-589
+ * Debugger is active!
+ * Debugger PIN: 956-883-589
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 956-883-589
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 956-883-589
+127.0.0.1 - - [18/Jan/2026 22:12:16] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 22:12:16] "GET /api/user/security-status HTTP/1.1" 200 -
+ * Detected change in 'C:\\Users\\dipti\\OneDrive\\applicative folder\\Quantum-aware-smart-login\\backend\\check_users.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 956-883-589
+127.0.0.1 - - [18/Jan/2026 22:16:19] "OPTIONS /api/login HTTP/1.1" 200 -
+{"timestamp": "2026-01-18T16:46:19.928715", "event_type": "LOGIN_ATTEMPT_VALID", "email": "dipti.singh_2027@woxsen.edu.in", "risk_level": "high", "ip_address": "127.0.0.1", "details": {}}
+{"timestamp": "2026-01-18T16:46:21.261768", "event_type": "LOGIN_ATTEMPT_VALID", "email": "dipti.singh_2027@woxsen.edu.in", "risk_level": "high", "ip_address": "127.0.0.1", "details": {}}
+{"timestamp": "2026-01-18T16:46:23.199751", "event_type": "OTP_SENT", "email": "dipti.singh_2027@woxsen.edu.in", "risk_level": "high", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 22:16:23] "POST /api/login HTTP/1.1" 200 -
+{"timestamp": "2026-01-18T16:46:24.899046", "event_type": "OTP_SENT", "email": "dipti.singh_2027@woxsen.edu.in", "risk_level": "high", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 22:16:24] "POST /api/login HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 22:16:50] "OPTIONS /api/verify-otp HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 22:16:50] "[33mPOST /api/verify-otp HTTP/1.1[0m" 404 -
+127.0.0.1 - - [18/Jan/2026 22:16:56] "OPTIONS /api/verify-otp HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 22:16:57] "[33mPOST /api/verify-otp HTTP/1.1[0m" 404 -
+127.0.0.1 - - [18/Jan/2026 22:17:15] "OPTIONS /api/verify-otp HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 22:17:15] "[33mPOST /api/verify-otp HTTP/1.1[0m" 404 -
+127.0.0.1 - - [18/Jan/2026 22:17:19] "[33mPOST /api/verify-otp HTTP/1.1[0m" 404 -
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 956-883-589
+127.0.0.1 - - [18/Jan/2026 22:19:38] "OPTIONS /api/verify-otp HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 22:19:38] "[33mPOST /api/verify-otp HTTP/1.1[0m" 404 -
+127.0.0.1 - - [18/Jan/2026 22:20:38] "OPTIONS /api/login HTTP/1.1" 200 -
+{"timestamp": "2026-01-18T16:50:38.817845", "event_type": "LOGIN_ATTEMPT_VALID", "email": "dipti.singh_2027@woxsen.edu.in", "risk_level": "high", "ip_address": "127.0.0.1", "details": {}}
+{"timestamp": "2026-01-18T16:50:42.019330", "event_type": "OTP_SENT", "email": "dipti.singh_2027@woxsen.edu.in", "risk_level": "high", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 22:20:42] "POST /api/login HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 22:21:02] "OPTIONS /api/verify-otp HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 22:21:02] "[33mPOST /api/verify-otp HTTP/1.1[0m" 404 -
+ * Detected change in 'C:\\Users\\dipti\\OneDrive\\applicative folder\\Quantum-aware-smart-login\\backend\\app.py', reloading
+ * Restarting with stat
+ * Detected change in 'C:\\Users\\dipti\\OneDrive\\applicative folder\\Quantum-aware-smart-login\\backend\\app.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 956-883-589
+ * Debugger is active!
+ * Debugger PIN: 956-883-589
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 956-883-589
+127.0.0.1 - - [18/Jan/2026 22:23:55] "OPTIONS /api/login HTTP/1.1" 200 -
+{"timestamp": "2026-01-18T16:53:56.466642", "event_type": "LOGIN_ATTEMPT_VALID", "email": "dipti.singh_2027@woxsen.edu.in", "risk_level": "high", "ip_address": "127.0.0.1", "details": {}}
+{"timestamp": "2026-01-18T16:54:00.191426", "event_type": "OTP_SENT", "email": "dipti.singh_2027@woxsen.edu.in", "risk_level": "high", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 22:24:00] "POST /api/login HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 22:24:21] "OPTIONS /api/verify-otp HTTP/1.1" 200 -
+{"timestamp": "2026-01-18T16:54:21.834727", "event_type": "OTP_SUCCESS", "email": "dipti.singh_2027@woxsen.edu.in", "risk_level": "high", "ip_address": "127.0.0.1", "details": {}}
+{"timestamp": "2026-01-18T16:54:21.835451", "event_type": "BIOMETRIC_REDIRECT", "email": "dipti.singh_2027@woxsen.edu.in", "risk_level": "high", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 22:24:21] "POST /api/verify-otp HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 22:25:02] "OPTIONS /api/login HTTP/1.1" 200 -
+{"timestamp": "2026-01-18T16:55:03.024114", "event_type": "LOGIN_ATTEMPT_VALID", "email": "poojithabonela19@gmail.com", "risk_level": "high", "ip_address": "127.0.0.1", "details": {}}
+{"timestamp": "2026-01-18T16:55:06.127728", "event_type": "OTP_SENT", "email": "poojithabonela19@gmail.com", "risk_level": "high", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 22:25:06] "POST /api/login HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 22:25:29] "OPTIONS /api/verify-otp HTTP/1.1" 200 -
+{"timestamp": "2026-01-18T16:55:29.523124", "event_type": "OTP_SUCCESS", "email": "poojithabonela19@gmail.com", "risk_level": "high", "ip_address": "127.0.0.1", "details": {}}
+{"timestamp": "2026-01-18T16:55:29.523723", "event_type": "BIOMETRIC_REDIRECT", "email": "poojithabonela19@gmail.com", "risk_level": "high", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 22:25:29] "POST /api/verify-otp HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 22:25:44] "OPTIONS /api/login HTTP/1.1" 200 -
+{"timestamp": "2026-01-18T16:55:44.678609", "event_type": "LOGIN_ATTEMPT_VALID", "email": "diptisingh202006@gmail.com", "risk_level": "high", "ip_address": "127.0.0.1", "details": {}}
+{"timestamp": "2026-01-18T16:55:47.750515", "event_type": "OTP_SENT", "email": "diptisingh202006@gmail.com", "risk_level": "high", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 22:25:47] "POST /api/login HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 22:29:17] "OPTIONS /api/register HTTP/1.1" 200 -
+{"timestamp": "2026-01-18T16:59:18.049157", "event_type": "REGISTER_SUCCESS", "email": "poojitha.bonela_2027@woxsen.edu.in", "risk_level": "low", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 22:29:18] "[35m[1mPOST /api/register HTTP/1.1[0m" 201 -
+127.0.0.1 - - [18/Jan/2026 22:29:45] "OPTIONS /api/login HTTP/1.1" 200 -
+{"timestamp": "2026-01-18T16:59:45.916797", "event_type": "LOGIN_ATTEMPT_VALID", "email": "poojitha.bonela_2027@woxsen.edu.in", "risk_level": "low", "ip_address": "127.0.0.1", "details": {}}
+{"timestamp": "2026-01-18T16:59:45.918329", "event_type": "LOGIN_SUCCESS", "email": "poojitha.bonela_2027@woxsen.edu.in", "risk_level": "low", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 22:29:45] "POST /api/login HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 22:29:45] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 22:29:46] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 22:33:32] "OPTIONS /api/login HTTP/1.1" 200 -
+{"timestamp": "2026-01-18T17:03:32.921693", "event_type": "LOGIN_ATTEMPT_VALID", "email": "poojitha.bonela_2027@woxsen.edu.in", "risk_level": "low", "ip_address": "127.0.0.1", "details": {}}
+{"timestamp": "2026-01-18T17:03:32.923065", "event_type": "LOGIN_SUCCESS", "email": "poojitha.bonela_2027@woxsen.edu.in", "risk_level": "low", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 22:33:32] "POST /api/login HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 22:33:32] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 22:33:33] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 22:37:09] "OPTIONS /api/register HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 22:37:09] "[31m[1mPOST /api/register HTTP/1.1[0m" 400 -
+127.0.0.1 - - [18/Jan/2026 22:37:13] "OPTIONS /api/login HTTP/1.1" 200 -
+{"timestamp": "2026-01-18T17:07:14.287363", "event_type": "LOGIN_ATTEMPT_VALID", "email": "poojitha.bonela_2027@woxsen.edu.in", "risk_level": "low", "ip_address": "127.0.0.1", "details": {}}
+{"timestamp": "2026-01-18T17:07:14.288966", "event_type": "LOGIN_SUCCESS", "email": "poojitha.bonela_2027@woxsen.edu.in", "risk_level": "low", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 22:37:14] "POST /api/login HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 22:37:14] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 22:37:14] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 22:37:18] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 22:37:18] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 22:37:37] "OPTIONS /api/register HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 22:37:37] "[31m[1mPOST /api/register HTTP/1.1[0m" 400 -
+127.0.0.1 - - [18/Jan/2026 22:37:41] "OPTIONS /api/login HTTP/1.1" 200 -
+{"timestamp": "2026-01-18T17:07:41.625252", "event_type": "LOGIN_ATTEMPT_VALID", "email": "poojitha.bonela_2027@woxsen.edu.in", "risk_level": "low", "ip_address": "127.0.0.1", "details": {}}
+{"timestamp": "2026-01-18T17:07:41.626778", "event_type": "LOGIN_SUCCESS", "email": "poojitha.bonela_2027@woxsen.edu.in", "risk_level": "low", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 22:37:41] "POST /api/login HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 22:37:41] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 22:37:41] "GET /api/user/security-status HTTP/1.1" 200 -
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 956-883-589
+127.0.0.1 - - [18/Jan/2026 22:40:40] "OPTIONS /api/login HTTP/1.1" 200 -
+{"timestamp": "2026-01-18T17:10:40.678425", "event_type": "LOGIN_ATTEMPT_VALID", "email": "poojitha.bonela_2027@woxsen.edu.in", "risk_level": "low", "ip_address": "127.0.0.1", "details": {}}
+{"timestamp": "2026-01-18T17:10:40.682218", "event_type": "LOGIN_SUCCESS", "email": "poojitha.bonela_2027@woxsen.edu.in", "risk_level": "low", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 22:40:40] "POST /api/login HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 22:40:40] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 22:40:41] "GET /api/user/security-status HTTP/1.1" 200 -
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 956-883-589
+ * Detected change in 'C:\\Users\\dipti\\OneDrive\\applicative folder\\Quantum-aware-smart-login\\backend\\seed_users.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 956-883-589
+127.0.0.1 - - [18/Jan/2026 22:57:23] "OPTIONS /api/register HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 22:57:23] "[31m[1mPOST /api/register HTTP/1.1[0m" 400 -
+127.0.0.1 - - [18/Jan/2026 22:57:28] "OPTIONS /api/login HTTP/1.1" 200 -
+{"timestamp": "2026-01-18T17:27:28.787024", "event_type": "LOGIN_ATTEMPT_VALID", "email": "poojitha.bonela_2027@woxsen.edu.in", "risk_level": "low", "ip_address": "127.0.0.1", "details": {}}
+{"timestamp": "2026-01-18T17:27:28.790333", "event_type": "LOGIN_SUCCESS", "email": "poojitha.bonela_2027@woxsen.edu.in", "risk_level": "low", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 22:57:28] "POST /api/login HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 22:57:28] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 22:57:29] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 22:57:31] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 22:57:31] "GET /api/user/security-status HTTP/1.1" 200 -
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 956-883-589
+127.0.0.1 - - [18/Jan/2026 22:59:25] "OPTIONS /api/login HTTP/1.1" 200 -
+{"timestamp": "2026-01-18T17:29:25.646340", "event_type": "LOGIN_ATTEMPT_VALID", "email": "poojitha.bonela_2027@woxsen.edu.in", "risk_level": "low", "ip_address": "127.0.0.1", "details": {}}
+{"timestamp": "2026-01-18T17:29:25.647912", "event_type": "LOGIN_SUCCESS", "email": "poojitha.bonela_2027@woxsen.edu.in", "risk_level": "low", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 22:59:25] "POST /api/login HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 22:59:25] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 22:59:25] "GET /api/user/security-status HTTP/1.1" 200 -
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 956-883-589
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 956-883-589
+127.0.0.1 - - [18/Jan/2026 23:01:53] "OPTIONS /api/register HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 23:01:54] "[31m[1mPOST /api/register HTTP/1.1[0m" 400 -
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 956-883-589
+127.0.0.1 - - [18/Jan/2026 23:06:34] "OPTIONS /api/register HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 23:06:34] "[31m[1mPOST /api/register HTTP/1.1[0m" 400 -
+127.0.0.1 - - [18/Jan/2026 23:08:40] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 23:08:40] "GET /api/user/security-status HTTP/1.1" 200 -
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 956-883-589
+127.0.0.1 - - [18/Jan/2026 23:10:42] "OPTIONS /api/register HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 23:10:43] "[31m[1mPOST /api/register HTTP/1.1[0m" 400 -
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 956-883-589
+127.0.0.1 - - [18/Jan/2026 23:14:08] "OPTIONS /api/register HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 23:14:08] "[31m[1mPOST /api/register HTTP/1.1[0m" 400 -
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 956-883-589
+127.0.0.1 - - [18/Jan/2026 23:16:19] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 23:16:19] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 23:16:51] "OPTIONS /api/register HTTP/1.1" 200 -
+{"timestamp": "2026-01-18T17:46:51.761906", "event_type": "REGISTER_SUCCESS", "email": "diptisingh202006@gmail.com", "risk_level": "high", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 23:16:51] "[35m[1mPOST /api/register HTTP/1.1[0m" 201 -
+127.0.0.1 - - [18/Jan/2026 23:17:06] "OPTIONS /api/login HTTP/1.1" 200 -
+{"timestamp": "2026-01-18T17:47:06.755406", "event_type": "LOGIN_ATTEMPT_VALID", "email": "diptisingh202006@gmail.com", "risk_level": "high", "ip_address": "127.0.0.1", "details": {}}
+{"timestamp": "2026-01-18T17:47:09.971028", "event_type": "OTP_SENT", "email": "diptisingh202006@gmail.com", "risk_level": "high", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 23:17:09] "POST /api/login HTTP/1.1" 200 -
+ * Detected change in 'C:\\Users\\dipti\\OneDrive\\applicative folder\\Quantum-aware-smart-login\\backend\\check_users.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 956-883-589
+127.0.0.1 - - [18/Jan/2026 23:22:23] "OPTIONS /api/register HTTP/1.1" 200 -
+{"timestamp": "2026-01-18T17:52:23.486071", "event_type": "REGISTER_SUCCESS", "email": "dipti.singh_2027@woxsen.edu.in", "risk_level": "high", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 23:22:23] "[35m[1mPOST /api/register HTTP/1.1[0m" 201 -
+127.0.0.1 - - [18/Jan/2026 23:22:38] "OPTIONS /api/login HTTP/1.1" 200 -
+{"timestamp": "2026-01-18T17:52:39.479389", "event_type": "LOGIN_ATTEMPT_VALID", "email": "dipti.singh_2027@woxsen.edu.in", "risk_level": "high", "ip_address": "127.0.0.1", "details": {}}
+{"timestamp": "2026-01-18T17:52:42.760556", "event_type": "OTP_SENT", "email": "dipti.singh_2027@woxsen.edu.in", "risk_level": "high", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 23:22:42] "POST /api/login HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 23:23:07] "OPTIONS /api/verify-otp HTTP/1.1" 200 -
+{"timestamp": "2026-01-18T17:53:08.003957", "event_type": "OTP_SUCCESS", "email": "dipti.singh_2027@woxsen.edu.in", "risk_level": "high", "ip_address": "127.0.0.1", "details": {}}
+{"timestamp": "2026-01-18T17:53:08.004661", "event_type": "BIOMETRIC_REDIRECT", "email": "dipti.singh_2027@woxsen.edu.in", "risk_level": "high", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 23:23:08] "POST /api/verify-otp HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 23:23:10] "OPTIONS /api/verify-biometric HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 23:23:10] "OPTIONS /api/verify-biometric HTTP/1.1" 200 -
+{"timestamp": "2026-01-18T17:53:10.327201", "event_type": "BIOMETRIC_SUCCESS", "email": "dipti.singh_2027@woxsen.edu.in", "risk_level": "high", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 23:23:10] "POST /api/verify-biometric HTTP/1.1" 200 -
+{"timestamp": "2026-01-18T17:53:10.634792", "event_type": "BIOMETRIC_SUCCESS", "email": "dipti.singh_2027@woxsen.edu.in", "risk_level": "high", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 23:23:10] "POST /api/verify-biometric HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 23:23:11] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 23:23:11] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 23:23:42] "OPTIONS /api/register HTTP/1.1" 200 -
+{"timestamp": "2026-01-18T17:53:42.986459", "event_type": "REGISTER_SUCCESS", "email": "poojithabonela19@gmail.com", "risk_level": "medium", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 23:23:42] "[35m[1mPOST /api/register HTTP/1.1[0m" 201 -
+127.0.0.1 - - [18/Jan/2026 23:23:58] "OPTIONS /api/login HTTP/1.1" 200 -
+{"timestamp": "2026-01-18T17:53:58.821959", "event_type": "LOGIN_ATTEMPT_VALID", "email": "poojithabonela19@gmail.com", "risk_level": "medium", "ip_address": "127.0.0.1", "details": {}}
+{"timestamp": "2026-01-18T17:54:01.545905", "event_type": "LOGIN_ATTEMPT_VALID", "email": "poojithabonela19@gmail.com", "risk_level": "medium", "ip_address": "127.0.0.1", "details": {}}
+{"timestamp": "2026-01-18T17:54:01.872455", "event_type": "OTP_SENT", "email": "poojithabonela19@gmail.com", "risk_level": "medium", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 23:24:01] "POST /api/login HTTP/1.1" 200 -
+{"timestamp": "2026-01-18T17:54:05.122446", "event_type": "OTP_SENT", "email": "poojithabonela19@gmail.com", "risk_level": "medium", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 23:24:05] "POST /api/login HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 23:24:38] "OPTIONS /api/verify-otp HTTP/1.1" 200 -
+{"timestamp": "2026-01-18T17:54:38.879476", "event_type": "OTP_FAIL", "email": "poojithabonela19@gmail.com", "risk_level": "medium", "ip_address": "127.0.0.1", "details": {"attempt": 1}}
+127.0.0.1 - - [18/Jan/2026 23:24:38] "[31m[1mPOST /api/verify-otp HTTP/1.1[0m" 401 -
+127.0.0.1 - - [18/Jan/2026 23:25:00] "OPTIONS /api/verify-otp HTTP/1.1" 200 -
+{"timestamp": "2026-01-18T17:55:00.479325", "event_type": "OTP_SUCCESS", "email": "poojithabonela19@gmail.com", "risk_level": "medium", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 23:25:00] "POST /api/verify-otp HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 23:25:00] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 23:25:00] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 23:27:15] "OPTIONS /api/login HTTP/1.1" 200 -
+{"timestamp": "2026-01-18T17:57:15.678167", "event_type": "LOGIN_ATTEMPT_VALID", "email": "dipti.singh_2027@woxsen.edu.in", "risk_level": "high", "ip_address": "127.0.0.1", "details": {}}
+{"timestamp": "2026-01-18T17:57:18.426302", "event_type": "LOGIN_ATTEMPT_VALID", "email": "dipti.singh_2027@woxsen.edu.in", "risk_level": "high", "ip_address": "127.0.0.1", "details": {}}
+{"timestamp": "2026-01-18T17:57:19.000827", "event_type": "OTP_SENT", "email": "dipti.singh_2027@woxsen.edu.in", "risk_level": "high", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 23:27:19] "POST /api/login HTTP/1.1" 200 -
+{"timestamp": "2026-01-18T17:57:21.506658", "event_type": "OTP_SENT", "email": "dipti.singh_2027@woxsen.edu.in", "risk_level": "high", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 23:27:21] "POST /api/login HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 23:27:52] "OPTIONS /api/verify-otp HTTP/1.1" 200 -
+{"timestamp": "2026-01-18T17:57:53.228147", "event_type": "OTP_SUCCESS", "email": "dipti.singh_2027@woxsen.edu.in", "risk_level": "high", "ip_address": "127.0.0.1", "details": {}}
+{"timestamp": "2026-01-18T17:57:53.228637", "event_type": "BIOMETRIC_REDIRECT", "email": "dipti.singh_2027@woxsen.edu.in", "risk_level": "high", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 23:27:53] "POST /api/verify-otp HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 23:27:55] "OPTIONS /api/verify-biometric HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 23:27:55] "OPTIONS /api/verify-biometric HTTP/1.1" 200 -
+{"timestamp": "2026-01-18T17:57:55.549063", "event_type": "BIOMETRIC_SUCCESS", "email": "dipti.singh_2027@woxsen.edu.in", "risk_level": "high", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 23:27:55] "POST /api/verify-biometric HTTP/1.1" 200 -
+{"timestamp": "2026-01-18T17:57:55.859423", "event_type": "BIOMETRIC_SUCCESS", "email": "dipti.singh_2027@woxsen.edu.in", "risk_level": "high", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 23:27:55] "POST /api/verify-biometric HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 23:27:56] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 23:27:57] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 23:31:35] "OPTIONS /api/register HTTP/1.1" 200 -
+{"timestamp": "2026-01-18T18:01:35.948289", "event_type": "REGISTER_SUCCESS", "email": "poojitha.bonela_2027@woxsen.edu.in", "risk_level": "low", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 23:31:35] "[35m[1mPOST /api/register HTTP/1.1[0m" 201 -
+127.0.0.1 - - [18/Jan/2026 23:31:56] "OPTIONS /api/login HTTP/1.1" 200 -
+{"timestamp": "2026-01-18T18:01:56.893166", "event_type": "LOGIN_FAIL", "email": "poojitha.bonela_2027@woxsen.edu.in", "risk_level": "unknown", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 23:31:56] "[31m[1mPOST /api/login HTTP/1.1[0m" 401 -
+127.0.0.1 - - [18/Jan/2026 23:32:09] "OPTIONS /api/login HTTP/1.1" 200 -
+{"timestamp": "2026-01-18T18:02:09.698004", "event_type": "LOGIN_ATTEMPT_VALID", "email": "poojitha.bonela_2027@woxsen.edu.in", "risk_level": "low", "ip_address": "127.0.0.1", "details": {}}
+{"timestamp": "2026-01-18T18:02:09.699800", "event_type": "LOGIN_SUCCESS", "email": "poojitha.bonela_2027@woxsen.edu.in", "risk_level": "low", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 23:32:09] "POST /api/login HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 23:32:09] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 23:32:10] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 23:34:57] "OPTIONS /api/login HTTP/1.1" 200 -
+{"timestamp": "2026-01-18T18:04:58.130457", "event_type": "LOGIN_ATTEMPT_VALID", "email": "dipti.singh_2027@woxsen.edu.in", "risk_level": "high", "ip_address": "127.0.0.1", "details": {}}
+{"timestamp": "2026-01-18T18:04:59.655668", "event_type": "LOGIN_ATTEMPT_VALID", "email": "dipti.singh_2027@woxsen.edu.in", "risk_level": "high", "ip_address": "127.0.0.1", "details": {}}
+{"timestamp": "2026-01-18T18:05:01.237999", "event_type": "OTP_SENT", "email": "dipti.singh_2027@woxsen.edu.in", "risk_level": "high", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 23:35:01] "POST /api/login HTTP/1.1" 200 -
+{"timestamp": "2026-01-18T18:05:04.401208", "event_type": "OTP_SENT", "email": "dipti.singh_2027@woxsen.edu.in", "risk_level": "high", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 23:35:04] "POST /api/login HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 23:35:36] "OPTIONS /api/login HTTP/1.1" 200 -
+{"timestamp": "2026-01-18T18:05:36.890740", "event_type": "LOGIN_FAIL", "email": "poojithabonela19@gmail.com", "risk_level": "unknown", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 23:35:36] "[31m[1mPOST /api/login HTTP/1.1[0m" 401 -
+{"timestamp": "2026-01-18T18:05:41.313082", "event_type": "LOGIN_FAIL", "email": "poojithabonela19@gmail.com", "risk_level": "unknown", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 23:35:41] "[31m[1mPOST /api/login HTTP/1.1[0m" 401 -
+127.0.0.1 - - [18/Jan/2026 23:35:45] "OPTIONS /api/login HTTP/1.1" 200 -
+{"timestamp": "2026-01-18T18:05:45.743889", "event_type": "LOGIN_FAIL", "email": "poojithabonela19@gmail.com", "risk_level": "unknown", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 23:35:45] "[31m[1mPOST /api/login HTTP/1.1[0m" 401 -
+{"timestamp": "2026-01-18T18:05:49.867790", "event_type": "LOGIN_FAIL", "email": "poojithabonela19@gmail.com", "risk_level": "unknown", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 23:35:49] "[31m[1mPOST /api/login HTTP/1.1[0m" 401 -
+127.0.0.1 - - [18/Jan/2026 23:35:56] "OPTIONS /api/login HTTP/1.1" 200 -
+{"timestamp": "2026-01-18T18:05:56.825823", "event_type": "LOGIN_FAIL", "email": "poojithabonela19@gmail.com", "risk_level": "unknown", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 23:35:56] "[31m[1mPOST /api/login HTTP/1.1[0m" 401 -
+ * Detected change in 'C:\\Users\\dipti\\OneDrive\\applicative folder\\Quantum-aware-smart-login\\backend\\models.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 956-883-589
+ * Detected change in 'C:\\Users\\dipti\\OneDrive\\applicative folder\\Quantum-aware-smart-login\\backend\\app.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 956-883-589
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 956-883-589
+127.0.0.1 - - [18/Jan/2026 23:38:26] "OPTIONS /api/login HTTP/1.1" 200 -
+{"timestamp": "2026-01-18T18:08:26.872990", "event_type": "LOGIN_FAIL", "email": "diptisingh202006@gmail.com", "risk_level": "high", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 23:38:26] "[31m[1mPOST /api/login HTTP/1.1[0m" 401 -
+{"timestamp": "2026-01-18T18:08:31.193541", "event_type": "LOGIN_FAIL", "email": "diptisingh202006@gmail.com", "risk_level": "high", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 23:38:31] "[31m[1mPOST /api/login HTTP/1.1[0m" 401 -
+127.0.0.1 - - [18/Jan/2026 23:38:35] "OPTIONS /api/login HTTP/1.1" 200 -
+{"timestamp": "2026-01-18T18:08:36.044550", "event_type": "ACCOUNT_LOCKED_PWD", "email": "diptisingh202006@gmail.com", "risk_level": "high", "ip_address": "127.0.0.1", "details": {}}
+{"timestamp": "2026-01-18T18:08:36.051742", "event_type": "LOGIN_FAIL", "email": "diptisingh202006@gmail.com", "risk_level": "high", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 23:38:36] "[31m[1mPOST /api/login HTTP/1.1[0m" 401 -
+127.0.0.1 - - [18/Jan/2026 23:38:40] "OPTIONS /api/login HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 23:38:40] "[31m[1mPOST /api/login HTTP/1.1[0m" 403 -
+127.0.0.1 - - [18/Jan/2026 23:38:45] "[31m[1mPOST /api/login HTTP/1.1[0m" 403 -
+127.0.0.1 - - [18/Jan/2026 23:39:24] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 23:39:25] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 23:39:30] "GET /api/admin/readiness HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 23:39:30] "GET /api/admin/readiness HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 23:39:30] "GET /api/admin/logs HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 23:39:30] "GET /api/admin/logs HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 23:39:31] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 23:39:31] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 23:39:53] "OPTIONS /api/login HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 23:39:53] "[31m[1mPOST /api/login HTTP/1.1[0m" 403 -
+127.0.0.1 - - [18/Jan/2026 23:40:13] "OPTIONS /api/login HTTP/1.1" 200 -
+{"timestamp": "2026-01-18T18:10:14.305493", "event_type": "LOGIN_FAIL", "email": "poojithabonela19@gmail.com", "risk_level": "medium", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 23:40:14] "[31m[1mPOST /api/login HTTP/1.1[0m" 401 -
+127.0.0.1 - - [18/Jan/2026 23:40:19] "OPTIONS /api/login HTTP/1.1" 200 -
+{"timestamp": "2026-01-18T18:10:19.935988", "event_type": "LOGIN_FAIL", "email": "poojithabonela19@gmail.com", "risk_level": "medium", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 23:40:19] "[31m[1mPOST /api/login HTTP/1.1[0m" 401 -
+{"timestamp": "2026-01-18T18:10:24.402028", "event_type": "ACCOUNT_LOCKED_PWD", "email": "poojithabonela19@gmail.com", "risk_level": "medium", "ip_address": "127.0.0.1", "details": {}}
+{"timestamp": "2026-01-18T18:10:24.409086", "event_type": "LOGIN_FAIL", "email": "poojithabonela19@gmail.com", "risk_level": "medium", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 23:40:24] "[31m[1mPOST /api/login HTTP/1.1[0m" 401 -
+127.0.0.1 - - [18/Jan/2026 23:40:41] "GET /api/admin/readiness HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 23:40:41] "GET /api/admin/logs HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 23:40:41] "GET /api/admin/readiness HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 23:40:41] "GET /api/admin/logs HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 23:41:02] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 23:41:02] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 23:50:50] "OPTIONS /api/login HTTP/1.1" 200 -
+{"timestamp": "2026-01-18T18:20:51.174750", "event_type": "LOGIN_ATTEMPT_VALID", "email": "dipti.singh_2027@woxsen.edu.in", "risk_level": "high", "ip_address": "127.0.0.1", "details": {}}
+{"timestamp": "2026-01-18T18:20:54.313905", "event_type": "OTP_SENT", "email": "dipti.singh_2027@woxsen.edu.in", "risk_level": "high", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 23:50:54] "POST /api/login HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 23:51:17] "OPTIONS /api/verify-otp HTTP/1.1" 200 -
+{"timestamp": "2026-01-18T18:21:18.098235", "event_type": "OTP_FAIL", "email": "dipti.singh_2027@woxsen.edu.in", "risk_level": "high", "ip_address": "127.0.0.1", "details": {"attempt": 1}}
+127.0.0.1 - - [18/Jan/2026 23:51:18] "[31m[1mPOST /api/verify-otp HTTP/1.1[0m" 401 -
+{"timestamp": "2026-01-18T18:21:21.791593", "event_type": "OTP_SUCCESS", "email": "dipti.singh_2027@woxsen.edu.in", "risk_level": "high", "ip_address": "127.0.0.1", "details": {}}
+{"timestamp": "2026-01-18T18:21:21.792473", "event_type": "BIOMETRIC_REDIRECT", "email": "dipti.singh_2027@woxsen.edu.in", "risk_level": "high", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 23:51:21] "POST /api/verify-otp HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 23:51:24] "OPTIONS /api/verify-biometric HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 23:51:24] "OPTIONS /api/verify-biometric HTTP/1.1" 200 -
+{"timestamp": "2026-01-18T18:21:24.377312", "event_type": "BIOMETRIC_SUCCESS", "email": "dipti.singh_2027@woxsen.edu.in", "risk_level": "high", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 23:51:24] "POST /api/verify-biometric HTTP/1.1" 200 -
+{"timestamp": "2026-01-18T18:21:24.434210", "event_type": "BIOMETRIC_SUCCESS", "email": "dipti.singh_2027@woxsen.edu.in", "risk_level": "high", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 23:51:24] "POST /api/verify-biometric HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 23:51:25] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 23:51:25] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 23:52:07] "OPTIONS /api/login HTTP/1.1" 200 -
+{"timestamp": "2026-01-18T18:22:07.516779", "event_type": "LOGIN_ATTEMPT_VALID", "email": "poojithabonela19@gmail.com", "risk_level": "medium", "ip_address": "127.0.0.1", "details": {}}
+{"timestamp": "2026-01-18T18:22:09.950552", "event_type": "LOGIN_ATTEMPT_VALID", "email": "poojithabonela19@gmail.com", "risk_level": "medium", "ip_address": "127.0.0.1", "details": {}}
+{"timestamp": "2026-01-18T18:22:15.948253", "event_type": "OTP_SENT", "email": "poojithabonela19@gmail.com", "risk_level": "medium", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 23:52:15] "POST /api/login HTTP/1.1" 200 -
+{"timestamp": "2026-01-18T18:22:16.756183", "event_type": "OTP_SENT", "email": "poojithabonela19@gmail.com", "risk_level": "medium", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 23:52:16] "POST /api/login HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 23:52:43] "OPTIONS /api/verify-otp HTTP/1.1" 200 -
+{"timestamp": "2026-01-18T18:22:43.980883", "event_type": "OTP_SUCCESS", "email": "poojithabonela19@gmail.com", "risk_level": "medium", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 23:52:43] "POST /api/verify-otp HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 23:52:44] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 23:52:44] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 23:53:20] "OPTIONS /api/login HTTP/1.1" 200 -
+{"timestamp": "2026-01-18T18:23:20.832681", "event_type": "LOGIN_ATTEMPT_VALID", "email": "poojitha.bonela_2027@woxsen.edu.in", "risk_level": "low", "ip_address": "127.0.0.1", "details": {}}
+{"timestamp": "2026-01-18T18:23:20.834209", "event_type": "LOGIN_SUCCESS", "email": "poojitha.bonela_2027@woxsen.edu.in", "risk_level": "low", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 23:53:20] "POST /api/login HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 23:53:20] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 23:53:21] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 23:53:32] "OPTIONS /api/login HTTP/1.1" 200 -
+{"timestamp": "2026-01-18T18:23:33.020232", "event_type": "ACCOUNT_LOCKED_PWD", "email": "diptisingh202006@gmail.com", "risk_level": "high", "ip_address": "127.0.0.1", "details": {}}
+{"timestamp": "2026-01-18T18:23:33.027849", "event_type": "LOGIN_FAIL", "email": "diptisingh202006@gmail.com", "risk_level": "high", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [18/Jan/2026 23:53:33] "[31m[1mPOST /api/login HTTP/1.1[0m" 401 -
+127.0.0.1 - - [18/Jan/2026 23:53:36] "[31m[1mPOST /api/login HTTP/1.1[0m" 403 -
+127.0.0.1 - - [18/Jan/2026 23:53:39] "OPTIONS /api/login HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 23:53:39] "[31m[1mPOST /api/login HTTP/1.1[0m" 403 -
+127.0.0.1 - - [18/Jan/2026 23:53:58] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [18/Jan/2026 23:53:58] "GET /api/user/security-status HTTP/1.1" 200 -
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 281-809-487
+127.0.0.1 - - [19/Jan/2026 10:37:01] "OPTIONS /api/login HTTP/1.1" 200 -
+{"timestamp": "2026-01-19T05:07:02.301876", "event_type": "LOGIN_FAIL", "email": "poojitha.bonela_2027@woxsen.edu.in", "risk_level": "low", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [19/Jan/2026 10:37:02] "[31m[1mPOST /api/login HTTP/1.1[0m" 401 -
+127.0.0.1 - - [19/Jan/2026 10:37:55] "OPTIONS /api/login HTTP/1.1" 200 -
+{"timestamp": "2026-01-19T05:07:56.938928", "event_type": "LOGIN_ATTEMPT_VALID", "email": "poojitha.bonela_2027@woxsen.edu.in", "risk_level": "low", "ip_address": "127.0.0.1", "details": {}}
+{"timestamp": "2026-01-19T05:07:56.944165", "event_type": "LOGIN_SUCCESS", "email": "poojitha.bonela_2027@woxsen.edu.in", "risk_level": "low", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [19/Jan/2026 10:37:56] "POST /api/login HTTP/1.1" 200 -
+127.0.0.1 - - [19/Jan/2026 10:37:56] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [19/Jan/2026 10:37:57] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [19/Jan/2026 10:42:11] "OPTIONS /api/register HTTP/1.1" 200 -
+127.0.0.1 - - [19/Jan/2026 10:42:11] "[31m[1mPOST /api/register HTTP/1.1[0m" 400 -
+127.0.0.1 - - [19/Jan/2026 10:42:30] "OPTIONS /api/login HTTP/1.1" 200 -
+{"timestamp": "2026-01-19T05:12:31.861911", "event_type": "LOGIN_ATTEMPT_VALID", "email": "poojitha.bonela_2027@woxsen.edu.in", "risk_level": "low", "ip_address": "127.0.0.1", "details": {}}
+{"timestamp": "2026-01-19T05:12:31.866569", "event_type": "LOGIN_SUCCESS", "email": "poojitha.bonela_2027@woxsen.edu.in", "risk_level": "low", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [19/Jan/2026 10:42:31] "POST /api/login HTTP/1.1" 200 -
+127.0.0.1 - - [19/Jan/2026 10:42:31] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [19/Jan/2026 10:42:32] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [19/Jan/2026 10:46:35] "OPTIONS /api/register HTTP/1.1" 200 -
+127.0.0.1 - - [19/Jan/2026 10:46:35] "[31m[1mPOST /api/register HTTP/1.1[0m" 400 -
+127.0.0.1 - - [19/Jan/2026 10:46:51] "OPTIONS /api/login HTTP/1.1" 200 -
+{"timestamp": "2026-01-19T05:16:53.119183", "event_type": "LOGIN_ATTEMPT_VALID", "email": "poojitha.bonela_2027@woxsen.edu.in", "risk_level": "low", "ip_address": "127.0.0.1", "details": {}}
+{"timestamp": "2026-01-19T05:16:53.123543", "event_type": "LOGIN_SUCCESS", "email": "poojitha.bonela_2027@woxsen.edu.in", "risk_level": "low", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [19/Jan/2026 10:46:53] "POST /api/login HTTP/1.1" 200 -
+127.0.0.1 - - [19/Jan/2026 10:46:53] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [19/Jan/2026 10:46:53] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [19/Jan/2026 10:47:48] "OPTIONS /api/login HTTP/1.1" 200 -
+{"timestamp": "2026-01-19T05:17:49.391653", "event_type": "LOGIN_ATTEMPT_VALID", "email": "dipti.singh_2027@woxsen.edu.in", "risk_level": "high", "ip_address": "127.0.0.1", "details": {}}
+{"timestamp": "2026-01-19T05:17:53.518638", "event_type": "OTP_SENT", "email": "dipti.singh_2027@woxsen.edu.in", "risk_level": "high", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [19/Jan/2026 10:47:53] "POST /api/login HTTP/1.1" 200 -
+127.0.0.1 - - [19/Jan/2026 10:48:56] "OPTIONS /api/verify-otp HTTP/1.1" 200 -
+{"timestamp": "2026-01-19T05:18:56.289208", "event_type": "OTP_SUCCESS", "email": "dipti.singh_2027@woxsen.edu.in", "risk_level": "high", "ip_address": "127.0.0.1", "details": {}}
+{"timestamp": "2026-01-19T05:18:56.290899", "event_type": "BIOMETRIC_REDIRECT", "email": "dipti.singh_2027@woxsen.edu.in", "risk_level": "high", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [19/Jan/2026 10:48:56] "POST /api/verify-otp HTTP/1.1" 200 -
+127.0.0.1 - - [19/Jan/2026 10:48:58] "OPTIONS /api/verify-biometric HTTP/1.1" 200 -
+127.0.0.1 - - [19/Jan/2026 10:48:58] "OPTIONS /api/verify-biometric HTTP/1.1" 200 -
+{"timestamp": "2026-01-19T05:18:58.671688", "event_type": "BIOMETRIC_SUCCESS", "email": "dipti.singh_2027@woxsen.edu.in", "risk_level": "high", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [19/Jan/2026 10:48:58] "POST /api/verify-biometric HTTP/1.1" 200 -
+{"timestamp": "2026-01-19T05:18:58.987069", "event_type": "BIOMETRIC_SUCCESS", "email": "dipti.singh_2027@woxsen.edu.in", "risk_level": "high", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [19/Jan/2026 10:48:58] "POST /api/verify-biometric HTTP/1.1" 200 -
+127.0.0.1 - - [19/Jan/2026 10:49:00] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [19/Jan/2026 10:49:08] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [19/Jan/2026 10:49:08] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [19/Jan/2026 10:49:12] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [19/Jan/2026 10:49:12] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [19/Jan/2026 10:49:13] "GET /api/admin/readiness HTTP/1.1" 200 -
+127.0.0.1 - - [19/Jan/2026 10:49:13] "GET /api/admin/logs HTTP/1.1" 200 -
+127.0.0.1 - - [19/Jan/2026 10:49:13] "GET /api/admin/readiness HTTP/1.1" 200 -
+127.0.0.1 - - [19/Jan/2026 10:49:13] "GET /api/admin/logs HTTP/1.1" 200 -
+127.0.0.1 - - [19/Jan/2026 10:54:27] "OPTIONS /api/register HTTP/1.1" 200 -
+{"timestamp": "2026-01-19T05:24:28.806833", "event_type": "REGISTER_SUCCESS", "email": "chatterjeesreeya@gmail.com", "risk_level": "medium", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [19/Jan/2026 10:54:28] "[35m[1mPOST /api/register HTTP/1.1[0m" 201 -
+127.0.0.1 - - [19/Jan/2026 10:54:40] "OPTIONS /api/login HTTP/1.1" 200 -
+{"timestamp": "2026-01-19T05:24:42.230350", "event_type": "LOGIN_ATTEMPT_VALID", "email": "chatterjeesreeya@gmail.com", "risk_level": "medium", "ip_address": "127.0.0.1", "details": {}}
+{"timestamp": "2026-01-19T05:24:46.256983", "event_type": "OTP_SENT", "email": "chatterjeesreeya@gmail.com", "risk_level": "medium", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [19/Jan/2026 10:54:46] "POST /api/login HTTP/1.1" 200 -
+127.0.0.1 - - [19/Jan/2026 10:55:02] "OPTIONS /api/verify-otp HTTP/1.1" 200 -
+{"timestamp": "2026-01-19T05:25:02.717976", "event_type": "OTP_SUCCESS", "email": "chatterjeesreeya@gmail.com", "risk_level": "medium", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [19/Jan/2026 10:55:02] "POST /api/verify-otp HTTP/1.1" 200 -
+127.0.0.1 - - [19/Jan/2026 10:55:02] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [19/Jan/2026 10:55:03] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [19/Jan/2026 11:32:18] "OPTIONS /api/register HTTP/1.1" 200 -
+127.0.0.1 - - [19/Jan/2026 11:32:18] "[31m[1mPOST /api/register HTTP/1.1[0m" 400 -
+127.0.0.1 - - [19/Jan/2026 11:32:55] "OPTIONS /api/login HTTP/1.1" 200 -
+{"timestamp": "2026-01-19T06:02:56.421387", "event_type": "LOGIN_ATTEMPT_VALID", "email": "poojitha.bonela_2027@woxsen.edu.in", "risk_level": "low", "ip_address": "127.0.0.1", "details": {}}
+{"timestamp": "2026-01-19T06:02:56.425895", "event_type": "LOGIN_SUCCESS", "email": "poojitha.bonela_2027@woxsen.edu.in", "risk_level": "low", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [19/Jan/2026 11:32:56] "POST /api/login HTTP/1.1" 200 -
+127.0.0.1 - - [19/Jan/2026 11:32:56] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [19/Jan/2026 11:32:56] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [19/Jan/2026 11:33:14] "OPTIONS /api/login HTTP/1.1" 200 -
+{"timestamp": "2026-01-19T06:03:15.590787", "event_type": "LOGIN_ATTEMPT_VALID", "email": "chatterjeesreeya@gmail.com", "risk_level": "medium", "ip_address": "127.0.0.1", "details": {}}
+{"timestamp": "2026-01-19T06:03:19.804450", "event_type": "OTP_SENT", "email": "chatterjeesreeya@gmail.com", "risk_level": "medium", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [19/Jan/2026 11:33:19] "POST /api/login HTTP/1.1" 200 -
+127.0.0.1 - - [19/Jan/2026 11:33:36] "OPTIONS /api/verify-otp HTTP/1.1" 200 -
+{"timestamp": "2026-01-19T06:03:37.217891", "event_type": "OTP_SUCCESS", "email": "chatterjeesreeya@gmail.com", "risk_level": "medium", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [19/Jan/2026 11:33:37] "POST /api/verify-otp HTTP/1.1" 200 -
+127.0.0.1 - - [19/Jan/2026 11:33:37] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [19/Jan/2026 11:33:37] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [19/Jan/2026 11:33:54] "GET /api/admin/readiness HTTP/1.1" 200 -
+127.0.0.1 - - [19/Jan/2026 11:33:54] "GET /api/admin/readiness HTTP/1.1" 200 -
+127.0.0.1 - - [19/Jan/2026 11:33:54] "GET /api/admin/logs HTTP/1.1" 200 -
+127.0.0.1 - - [19/Jan/2026 11:33:55] "GET /api/admin/logs HTTP/1.1" 200 -
+127.0.0.1 - - [19/Jan/2026 11:34:24] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [19/Jan/2026 11:34:24] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [19/Jan/2026 12:36:41] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [19/Jan/2026 12:36:41] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [19/Jan/2026 17:55:44] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [19/Jan/2026 17:55:45] "GET /api/user/security-status HTTP/1.1" 200 -
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 956-883-589
+127.0.0.1 - - [30/Jan/2026 10:22:33] "OPTIONS /api/register HTTP/1.1" 200 -
+{"timestamp": "2026-01-30T04:52:34.837173", "event_type": "REGISTER_SUCCESS", "email": "mehergayatri17@gmail.com", "risk_level": "high", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [30/Jan/2026 10:22:34] "[35m[1mPOST /api/register HTTP/1.1[0m" 201 -
+127.0.0.1 - - [30/Jan/2026 10:22:50] "OPTIONS /api/login HTTP/1.1" 200 -
+{"timestamp": "2026-01-30T04:52:51.674157", "event_type": "LOGIN_ATTEMPT_VALID", "email": "mehergayatri17@gmail.com", "risk_level": "high", "ip_address": "127.0.0.1", "details": {}}
+{"timestamp": "2026-01-30T04:52:55.694189", "event_type": "OTP_SENT", "email": "mehergayatri17@gmail.com", "risk_level": "high", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [30/Jan/2026 10:22:55] "POST /api/login HTTP/1.1" 200 -
+127.0.0.1 - - [30/Jan/2026 10:23:42] "OPTIONS /api/verify-otp HTTP/1.1" 200 -
+{"timestamp": "2026-01-30T04:53:42.425767", "event_type": "OTP_SUCCESS", "email": "mehergayatri17@gmail.com", "risk_level": "high", "ip_address": "127.0.0.1", "details": {}}
+{"timestamp": "2026-01-30T04:53:42.427415", "event_type": "BIOMETRIC_REDIRECT", "email": "mehergayatri17@gmail.com", "risk_level": "high", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [30/Jan/2026 10:23:42] "POST /api/verify-otp HTTP/1.1" 200 -
+127.0.0.1 - - [30/Jan/2026 10:23:44] "OPTIONS /api/verify-biometric HTTP/1.1" 200 -
+127.0.0.1 - - [30/Jan/2026 10:23:44] "OPTIONS /api/verify-biometric HTTP/1.1" 200 -
+{"timestamp": "2026-01-30T04:53:44.763646", "event_type": "BIOMETRIC_SUCCESS", "email": "mehergayatri17@gmail.com", "risk_level": "high", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [30/Jan/2026 10:23:44] "POST /api/verify-biometric HTTP/1.1" 200 -
+{"timestamp": "2026-01-30T04:53:45.071638", "event_type": "BIOMETRIC_SUCCESS", "email": "mehergayatri17@gmail.com", "risk_level": "high", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [30/Jan/2026 10:23:45] "POST /api/verify-biometric HTTP/1.1" 200 -
+127.0.0.1 - - [30/Jan/2026 10:23:46] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [30/Jan/2026 10:23:46] "GET /api/user/security-status HTTP/1.1" 200 -
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 956-883-589
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 956-883-589
+127.0.0.1 - - [19/Feb/2026 13:17:23] "OPTIONS /api/login HTTP/1.1" 200 -
+{"timestamp": "2026-02-19T07:47:25.057957", "event_type": "LOGIN_ATTEMPT_VALID", "email": "poojitha.bonela_2027@woxsen.edu.in", "risk_level": "low", "ip_address": "127.0.0.1", "details": {}}
+{"timestamp": "2026-02-19T07:47:25.061615", "event_type": "LOGIN_SUCCESS", "email": "poojitha.bonela_2027@woxsen.edu.in", "risk_level": "low", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [19/Feb/2026 13:17:25] "POST /api/login HTTP/1.1" 200 -
+127.0.0.1 - - [19/Feb/2026 13:17:25] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [19/Feb/2026 13:17:25] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [19/Feb/2026 13:17:31] "GET /api/admin/readiness HTTP/1.1" 200 -
+127.0.0.1 - - [19/Feb/2026 13:17:31] "GET /api/admin/logs HTTP/1.1" 200 -
+127.0.0.1 - - [19/Feb/2026 13:17:32] "GET /api/admin/readiness HTTP/1.1" 200 -
+127.0.0.1 - - [19/Feb/2026 13:17:32] "GET /api/admin/logs HTTP/1.1" 200 -
+127.0.0.1 - - [19/Feb/2026 13:17:37] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [19/Feb/2026 13:17:37] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [19/Feb/2026 13:17:41] "GET /api/admin/readiness HTTP/1.1" 200 -
+127.0.0.1 - - [19/Feb/2026 13:17:41] "GET /api/admin/logs HTTP/1.1" 200 -
+127.0.0.1 - - [19/Feb/2026 13:17:41] "GET /api/admin/readiness HTTP/1.1" 200 -
+127.0.0.1 - - [19/Feb/2026 13:17:41] "GET /api/admin/logs HTTP/1.1" 200 -
+127.0.0.1 - - [19/Feb/2026 13:18:20] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [19/Feb/2026 13:18:20] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [19/Feb/2026 13:19:19] "OPTIONS /api/login HTTP/1.1" 200 -
+{"timestamp": "2026-02-19T07:49:20.228451", "event_type": "LOGIN_ATTEMPT_VALID", "email": "poojitha.bonela_2027@woxsen.edu.in", "risk_level": "low", "ip_address": "127.0.0.1", "details": {}}
+{"timestamp": "2026-02-19T07:49:20.232814", "event_type": "LOGIN_SUCCESS", "email": "poojitha.bonela_2027@woxsen.edu.in", "risk_level": "low", "ip_address": "127.0.0.1", "details": {}}
+127.0.0.1 - - [19/Feb/2026 13:19:20] "POST /api/login HTTP/1.1" 200 -
+127.0.0.1 - - [19/Feb/2026 13:19:20] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [19/Feb/2026 13:19:20] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [19/Feb/2026 13:19:37] "OPTIONS /api/register HTTP/1.1" 200 -
+127.0.0.1 - - [19/Feb/2026 13:19:37] "[31m[1mPOST /api/register HTTP/1.1[0m" 400 -
+127.0.0.1 - - [19/Feb/2026 13:19:39] "GET /api/user/security-status HTTP/1.1" 200 -
+127.0.0.1 - - [19/Feb/2026 13:19:39] "GET /api/user/security-status HTTP/1.1" 200 -
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 956-883-589
