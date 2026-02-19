@@ -31,6 +31,7 @@ function Login() {
             const response = await fetch('http://localhost:5000/api/login', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
+                credentials: 'include',
                 body: JSON.stringify({
                     email: formData.email,
                     password: formData.password
@@ -39,15 +40,17 @@ function Login() {
 
             const data = await response.json();
 
-            if (data.status === 'success') {
-                navigate('/dashboard');
-            } else if (data.status === 'mfa_required') {
-                navigate('/otp');
+            if (response.ok) {
+                if (data.status === 'success') {
+                    navigate('/dashboard');
+                } else if (data.status === 'mfa_required') {
+                    navigate('/otp', { state: { email: formData.email } });
+                }
             } else {
-                setError('Login failed. Please try again.');
+                setError(data.message || 'Login failed. Please try again.');
             }
         } catch (err) {
-            setError('Login failed. Please try again.');
+            setError('Connection error. Please try again later.');
         }
     };
 
